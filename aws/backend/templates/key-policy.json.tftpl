@@ -1,0 +1,38 @@
+{
+  "Version": "2012-10-17",
+  "Id": "key-default-1",
+  "Statement": [
+    {
+      "Sid": "Enable IAM User Permissions",
+      "Effect": "Allow",
+      "Principal": {
+        "AWS": "arn:${partition}:iam::${account_id}:root"
+      },
+      "Action": "kms:*",
+      "Resource": "*"
+    },
+    {
+      "Sid": "Allow S3 to encrypt and decrypt objects",
+      "Effect": "Allow",
+      "Principal": {
+        "AWS": "*"
+      },
+      "Action": [
+        "kms:Decrypt",
+        "kms:Encrypt",
+        "kms:GenerateDataKey",
+        "kms:ReEncrypt*"
+      ],
+      "Resource": "*",
+      "Condition": {
+        "StringLike": {
+            "kms:CallerAccount": "${account_id}",
+            "kms:EncryptionContext:aws:s3:arn": [
+                "${bucket_arn}",
+                "${bucket_arn}/*"
+            ]
+        }
+      }
+    }
+  ]
+}
