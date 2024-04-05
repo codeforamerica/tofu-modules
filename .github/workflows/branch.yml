@@ -1,0 +1,104 @@
+name: Branch Checks
+
+on:
+  push:
+    branches-ignore:
+      - main
+
+jobs:
+  find-modules:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout source code
+        uses: actions/checkout@v4
+
+      - name: Find all terraform modules
+        id: find
+        uses: bendrucker/find-terraform-modules@v1
+
+      - name: Show all matching modules
+        shell: bash
+        run: |
+          mods=(${{ join(fromJSON(steps.find.outputs.modules), ' ') }})
+          printf "%s\n" "${mods[@]}"
+
+      - name: Find all changed fiiles
+        id: diff
+        uses: technote-space/get-diff-action@v6
+        with:
+          FORMAT: json
+
+      - name: Show changed files
+        run: |
+          echo "${{ steps.diff.outputs.diff }}"
+
+      - name: Get the modified modules
+        id: modified
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const modules = ${{ steps.find.outputs.modules }}
+            const diff = ${{ steps.diff.outputs.diff }}
+            const modifiedModules = modules.filter(
+              (module) => {
+                return !!diff.find(file => new RegExp(`^${module}/.+`).test(file))
+              }
+            )
+            
+            core.setOutput('modules', modifiedModules)
+
+      - name: Show modified modules
+        run: |
+          echo "${{ steps.modified.outputs.modules }}"
+    outputs:
+      modules: ${{ steps.modified.outputs.modules }}
+
+  lint:
+    runs-on: ubuntu-latest
+    needs: find-modules
+    steps:
+      - name: Checkout source code
+        uses: actions/checkout@v4
+
+      - uses: actions/cache@v4
+        name: Cache plugin directory
+        with:
+          path: ~/.tflint.d/plugins
+          key: tflint-${{ hashFiles('.tflint.hcl') }}
+
+      - uses: terraform-linters/setup-tflint@v4
+        name: Setup TFLint
+
+      - name: Show version
+        run: tflint --version
+
+      - name: Init TFLint
+        run: tflint --init
+
+      # Use a bash script to run tflint on each modified module.
+      - name: Run TFLint
+        shell: bash
+        run: |
+          set +e
+
+          exit_code=0
+          modules=(${{ join(fromJSON(needs.find-modules.outputs.modules), ' ') }})
+          for module in ${modules[@]}
+          do
+            echo "Linting module $module"
+            tflint --format compact --chdir $module
+            exit_code=$(( $? > exit_code ? $? : exit_code ))
+          done
+
+          exit $exit_code
+
+  tfsec:
+    name: tfsec
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout source code
+        uses: actions/checkout@v4
+      - name: Runs tfsec
+        uses: aquasecurity/tfsec-action@v1.0.0
+        with:
+          additional_args: --config-file tfsec.yml
