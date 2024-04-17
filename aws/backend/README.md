@@ -1,4 +1,4 @@
-# AWS Backend module
+# AWS Backend Module
 
 This module creates an AWS backend for OpenTofu.
 
@@ -58,8 +58,8 @@ You now have a fully configured AWS backend for your project!
 
 ## Inputs
 
-| Name                | Description                                                          | Type     | Default | Required |
-|---------------------|----------------------------------------------------------------------|----------|---------|:--------:|
-| project             | The name of the project                                              | `string` | n/a     |   yes    |
-| environment         | The environment for the project                                      | `string` | `"dev"` |   yes    |
-| key_recovery_period | The number of days to retain the KMS key for recovery after deletion | `number` | `30`     |    no    |
+| Name                | Description                                                           | Type     | Default | Required |
+|---------------------|-----------------------------------------------------------------------|----------|---------|:--------:|
+| project             | The name of the project.                                              | `string` | n/a     |   yes    |
+| environment         | The environment for the project.                                      | `string` | `"dev"` |    no    |
+| key_recovery_period | The number of days to retain the KMS key for recovery after deletion. | `number` | `30`    |    no    |
