@@ -103,9 +103,9 @@ resource "aws_wafv2_web_acl" "waf" {
 
     statement {
       rate_based_statement {
-        aggregate_key_type = "IP"
+        aggregate_key_type    = "IP"
         evaluation_window_sec = 300
-        limit              = 300
+        limit                 = 300
       }
     }
 
@@ -117,7 +117,7 @@ resource "aws_wafv2_web_acl" "waf" {
   }
 
   rule {
-    name = "AWS-AWSManagedRulesAmazonIpReputationList"
+    name     = "AWS-AWSManagedRulesAmazonIpReputationList"
     priority = 1
 
     override_action {
@@ -125,21 +125,21 @@ resource "aws_wafv2_web_acl" "waf" {
     }
 
     statement {
-        managed_rule_group_statement {
-            name = "AWSManagedRulesAmazonIpReputationList"
-            vendor_name = "AWS"
-        }
+      managed_rule_group_statement {
+        name        = "AWSManagedRulesAmazonIpReputationList"
+        vendor_name = "AWS"
+      }
     }
 
     visibility_config {
-        cloudwatch_metrics_enabled = true
-        metric_name                = "${local.prefix}-waf-ip-reputation"
-        sampled_requests_enabled   = true
+      cloudwatch_metrics_enabled = true
+      metric_name                = "${local.prefix}-waf-ip-reputation"
+      sampled_requests_enabled   = true
     }
   }
 
   rule {
-    name = "AWS-AWSManagedRulesCommonRuleSet"
+    name     = "AWS-AWSManagedRulesCommonRuleSet"
     priority = 2
 
     override_action {
@@ -147,21 +147,21 @@ resource "aws_wafv2_web_acl" "waf" {
     }
 
     statement {
-        managed_rule_group_statement {
-            name = "AWSManagedRulesCommonRuleSet"
-            vendor_name = "AWS"
-        }
+      managed_rule_group_statement {
+        name        = "AWSManagedRulesCommonRuleSet"
+        vendor_name = "AWS"
+      }
     }
 
     visibility_config {
-        cloudwatch_metrics_enabled = true
-        metric_name                = "${local.prefix}-waf-common-rules"
-        sampled_requests_enabled   = true
+      cloudwatch_metrics_enabled = true
+      metric_name                = "${local.prefix}-waf-common-rules"
+      sampled_requests_enabled   = true
     }
   }
 
   rule {
-    name = "AWS-AWSManagedRulesKnownBadInputsRuleSet"
+    name     = "AWS-AWSManagedRulesKnownBadInputsRuleSet"
     priority = 3
 
     override_action {
@@ -169,21 +169,21 @@ resource "aws_wafv2_web_acl" "waf" {
     }
 
     statement {
-        managed_rule_group_statement {
-            name = "AWSManagedRulesKnownBadInputsRuleSet"
-            vendor_name = "AWS"
-        }
+      managed_rule_group_statement {
+        name        = "AWSManagedRulesKnownBadInputsRuleSet"
+        vendor_name = "AWS"
+      }
     }
 
     visibility_config {
-        cloudwatch_metrics_enabled = true
-        metric_name                = "${local.prefix}-waf-known-bad-inputs"
-        sampled_requests_enabled   = true
+      cloudwatch_metrics_enabled = true
+      metric_name                = "${local.prefix}-waf-known-bad-inputs"
+      sampled_requests_enabled   = true
     }
   }
 
   rule {
-    name = "AWS-AWSManagedRulesSQLiRuleSet"
+    name     = "AWS-AWSManagedRulesSQLiRuleSet"
     priority = 4
 
     override_action {
@@ -191,16 +191,16 @@ resource "aws_wafv2_web_acl" "waf" {
     }
 
     statement {
-        managed_rule_group_statement {
-            name = "AWSManagedRulesSQLiRuleSet"
-            vendor_name = "AWS"
-        }
+      managed_rule_group_statement {
+        name        = "AWSManagedRulesSQLiRuleSet"
+        vendor_name = "AWS"
+      }
     }
 
     visibility_config {
-        cloudwatch_metrics_enabled = true
-        metric_name                = "${local.prefix}-waf-sqli"
-        sampled_requests_enabled   = true
+      cloudwatch_metrics_enabled = true
+      metric_name                = "${local.prefix}-waf-sqli"
+      sampled_requests_enabled   = true
     }
   }
 
