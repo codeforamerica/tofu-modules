@@ -39,7 +39,7 @@ tofu init -upgrade
 |---------------------|-------------------------------------------------------|----------|---------|----------|
 | project             | Name of the project.                                  | `string` | n/a     | yes      |
 | environment         | Environment for the project.                          | `string` | `"dev"` | no       |
-| key_recovery_period | Number of days to recover the KMS key after deletion. | `number` | 30      | yes      |
+| key_recovery_period | Number of days to recover the KMS key after deletion. | `number` | `30`      | yes      |
 
 ## Outputs
 
