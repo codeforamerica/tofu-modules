@@ -5,7 +5,9 @@ Web Application Firewall (WAF) _without_ caching.
 
 ## Usage
 
-Add this module to your `main.tf` (or appropriate) file:
+Add this module to your `main.tf` (or appropriate) file and configure the inputs
+to match your desired configuration. For example, to create a new distribution
+`my-project.org` that points to `origin.my-project.org`, you could use:
 
 ```hcl
 module "cloudfront_waf" {

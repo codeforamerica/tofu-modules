@@ -44,7 +44,7 @@ jobs:
                 return !!diff.find(file => new RegExp(`^${module}/.+`).test(file))
               }
             )
-            
+
             core.setOutput('modules', modifiedModules)
 
       - name: Show modified modules
@@ -106,10 +106,10 @@ jobs:
           skip-dirs: '"**/*/.terraform"'
           exit-code: 1
           format: sarif
-          output: 'trivy-results.sarif'
+          output: "trivy-results.sarif"
 
       - name: Parse SARIF file
         if: always()
         uses: Ayrx/sarif_to_github_annotations@v0.2.2
         with:
-          sarif_file: 'trivy-results.sarif'
+          sarif_file: "trivy-results.sarif"
