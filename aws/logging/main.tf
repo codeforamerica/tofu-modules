@@ -1,9 +1,20 @@
+# We don't want to log access to this bucket, as that would cause an infinite
+# loop of logging.
+#trivy:ignore:avd-aws-0089
 resource "aws_s3_bucket" "logs" {
   bucket = "${local.prefix}-logs"
 
   lifecycle {
     prevent_destroy = true
   }
+}
+
+resource "aws_s3_bucket_public_access_block" "good_example" {
+  bucket = aws_s3_bucket.logs.id
+  block_public_acls = true
+  block_public_policy = true
+  ignore_public_acls = true
+  restrict_public_buckets = true
 }
 
 #tfsec:ignore:aws-s3-encryption-customer-key
