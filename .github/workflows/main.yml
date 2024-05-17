@@ -44,7 +44,7 @@ jobs:
                 return !!diff.find(file => new RegExp(`^${module}/.+`).test(file))
               }
             )
-            
+
             core.setOutput('modules', modifiedModules)
 
       - name: Show modified modules
@@ -92,13 +92,23 @@ jobs:
 
           exit $exit_code
 
-  tfsec:
-    name: tfsec
+  trivy:
+    name: trivy
     runs-on: ubuntu-latest
     steps:
       - name: Checkout source code
         uses: actions/checkout@v4
-      - name: Runs tfsec
-        uses: aquasecurity/tfsec-action@v1.0.0
+      - name: Run Trivy vulnarability scanner
+        uses: aquasecurity/trivy-action@master
         with:
-          additional_args: --config-file tfsec.yml
+          scan-type: config
+          ignore-unfixed: true
+          skip-dirs: '"**/*/.terraform"'
+          exit-code: 1
+          format: sarif
+          output: "trivy-results.sarif"
+
+      - name: Upload SARIF result
+        uses: github/codeql-action/upload-sarif@v3
+        with:
+          sarif_file: "trivy-results.sarif"
