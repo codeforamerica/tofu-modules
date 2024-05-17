@@ -92,13 +92,24 @@ jobs:
 
           exit $exit_code
 
-  tfsec:
-    name: tfsec
+  trivy:
+    name: trivy
     runs-on: ubuntu-latest
     steps:
       - name: Checkout source code
         uses: actions/checkout@v4
-      - name: Runs tfsec
-        uses: aquasecurity/tfsec-action@v1.0.0
+      - name: Run Trivy vulnarability scanner
+        uses: aquasecurity/trivy-action@master
         with:
-          additional_args: --config-file tfsec.yml
+          scan-type: config
+          ignore-unfixed: true
+          skip-dirs: '"**/*/.terraform"'
+          exit-code: 1
+          format: sarif
+          output: 'trivy-results.sarif'
+
+      - name: Parse SARIF file
+        if: always()
+        uses: Ayrx/sarif_to_github_annotations@v0.2.2
+        with:
+          sarif_file: 'trivy-results.sarif'

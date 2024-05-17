@@ -1,0 +1,40 @@
+Version: '2012-10-17'
+Id: key-default-1
+Statement:
+- Sid: Enable IAM User Permissions
+  Effect: Allow
+  Principal:
+    AWS: arn:${partition}:iam::${account_id}:root
+  Action: kms:*
+  Resource: "*"
+- Sid: Allow CloudWatch to encrypt logs
+  Effect: Allow
+  Principal:
+    Service: logs.${region}.amazonaws.com
+  Action:
+  - kms:Encrypt*
+  - kms:Decrypt*
+  - kms:ReEncrypt*
+  - kms:GenerateDataKey*
+  - kms:Describe*
+  Resource: "*"
+  Condition:
+    ArnLike:
+      kms:EncryptionContext:aws:logs:arn: arn:${partition}:logs:${region}:${account_id}:log-group:*
+- Sid: Allow RDS Performance Insights
+  Effect: Allow
+  Principal:
+    AWS:
+    - arn:${partition}:iam::${account_id}:root
+  Action:
+  - kms:Decrypt
+  - kms:GenerateDataKey
+  Resource: "*"
+  Condition:
+    StringEquals:
+      kms:ViaService: rds.${region}.amazonaws.com
+      aws:RequestTag/project: ${project}
+      aws:RequestTag/environment: ${environment}
+    ForAnyValue:StringLike:
+      kms:EncryptionContext:aws:pi:service: rds
+      kms:EncryptionContext:service: pi

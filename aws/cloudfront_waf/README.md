@@ -8,13 +8,13 @@ Web Application Firewall (WAF) _without_ caching.
 Add this module to your `main.tf` (or appropriate) file:
 
 ```hcl
-module "backend" {
-  source = "github.com/codeforamerica/tofu-modules/aws/backend"
+module "cloudfront_waf" {
+  source = "github.com/codeforamerica/tofu-modules/aws/cloudfront_waf"
 
   project = "my-project"
   environment = "dev"
   domain = "my-project.org"
-  log_bucket = module.log_bucket.s3_bucket_bucket_domain_name
+  log_bucket = module.logging.bucket
 }
 ```
 
