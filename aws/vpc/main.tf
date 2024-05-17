@@ -1,3 +1,5 @@
+# TODO: Create our own IAM role for flow logs to avoid a wildcard in the policy.
+#trivy:ignore:avd-aws-0057
 module "vpc" {
   source = "terraform-aws-modules/vpc/aws"
   version = "~> 5.8"
