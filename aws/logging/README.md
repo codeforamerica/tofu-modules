@@ -8,7 +8,8 @@ Managed Keys) are [not supported] for access logging._
 
 ## Usage
 
-Add this module to your `main.tf` (or appropriate) file:
+Add this module to your `main.tf` (or appropriate) file and configure the inputs
+to match your desired configuration. For example:
 
 ```hcl
 module "cloudfront_waf" {

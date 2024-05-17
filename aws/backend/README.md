@@ -7,7 +7,8 @@ This module creates an AWS backend for OpenTofu.
 > **Note:** These steps must be completed _before_ adding the backend
 > configuration to your `main.tf` file.
 
-Add this module to your `main.tf` (or appropriate) file:
+Add this module to your `main.tf` (or appropriate) file and configure the inputs
+to match your desired configuration. For example:
 
 ```hcl
 module "backend" {
@@ -63,3 +64,11 @@ You now have a fully configured AWS backend for your project!
 | project             | The name of the project.                                              | `string` | n/a     |   yes    |
 | environment         | The environment for the project.                                      | `string` | `"dev"` |    no    |
 | key_recovery_period | The number of days to retain the KMS key for recovery after deletion. | `number` | `30`    |    no    |
+
+
+## Outputs
+
+| Name    | Description                              | Type     |
+|---------|------------------------------------------|----------|
+| bucket  | Name of the S3 bucket for state storage. | `string` |
+| kms_key | KMS key used to encrypt state.           | `string` |
