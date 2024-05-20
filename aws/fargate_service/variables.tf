@@ -39,6 +39,11 @@ variable "key_recovery_period" {
   }
 }
 
+variable "logging_key_id" {
+  type        = string
+  description = "KMS key ID for encrypting logs."
+}
+
 variable "private_subnets" {
   type        = list(string)
   description = "List of private subnets."

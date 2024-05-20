@@ -13,7 +13,8 @@ module "ecr" {
   )))
 }
 
-# TODO: Configure internal CIDR
+# If this is a public load balancer, we need to allow all traffic.
+#trivy:ignore:avd-aws-0107
 module "endpoint_security_group" {
   source  = "terraform-aws-modules/security-group/aws"
   version = "~> 5.1"
@@ -22,16 +23,19 @@ module "endpoint_security_group" {
   vpc_id = var.vpc_id
 
   # Ingress for HTTP
-  ingress_cidr_blocks      = [var.internal ? "10.0.0.0/16" : "0.0.0.0/0"]
+  ingress_cidr_blocks      = [var.internal ? data.aws_vpc.current.cidr_block : "0.0.0.0/0"]
   ingress_rules            = ["http-80-tcp", "https-443-tcp"]
 
   # Allow all egress
-  egress_cidr_blocks      = ["0.0.0.0/0"]
-  egress_ipv6_cidr_blocks = ["::/0"]
+  egress_cidr_blocks      = [data.aws_vpc.current.cidr_block]
   egress_rules            = ["all-all"]
+#   egress_cidr_blocks      = ["0.0.0.0/0"]
+  egress_ipv6_cidr_blocks = []
+#   egress_rules            = ["all-all"]
 }
 
-# TODO: Configure internal CIDR
+# TODO: Determine how we can best restrict the egress rules.
+#trivy:ignore:avd-aws-0104
 module "task_security_group" {
   source  = "terraform-aws-modules/security-group/aws"
   version = "~> 5.1"
@@ -47,8 +51,7 @@ module "task_security_group" {
     source_security_group_id = module.endpoint_security_group.security_group_id
   }]
 
-  # Allow all egress
-  # TODO: Can we restrict this?
+  # Allow all egress.
   egress_cidr_blocks      = ["0.0.0.0/0"]
   egress_ipv6_cidr_blocks = ["::/0"]
   egress_rules            = ["all-all"]
