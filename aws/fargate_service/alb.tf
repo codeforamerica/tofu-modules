@@ -1,6 +1,6 @@
 module "alb" {
-  source  = "terraform-aws-modules/alb/aws"
-  version = "~> 9.9"
+  source                     = "terraform-aws-modules/alb/aws"
+  version                    = "~> 9.9"
   enable_deletion_protection = !var.force_delete
 
   name               = local.prefix_short
@@ -24,10 +24,10 @@ module "alb" {
     }
 
     https = {
-      port               = 443
-      protocol           = "HTTPS"
-      ssl_policy         = "ELBSecurityPolicy-TLS-1-2-2017-01"
-      certificate_arn    = aws_acm_certificate.endpoint.arn
+      port            = 443
+      protocol        = "HTTPS"
+      ssl_policy      = "ELBSecurityPolicy-TLS-1-2-2017-01"
+      certificate_arn = aws_acm_certificate.endpoint.arn
       forward = {
         target_group_key = "endpoint"
       }
@@ -36,18 +36,18 @@ module "alb" {
 
   target_groups = {
     endpoint = {
-      name = "${local.prefix_short}-app"
-      protocol = "HTTP"
+      name        = "${local.prefix_short}-app"
+      protocol    = "HTTP"
       target_type = "ip"
-      port = var.container_port
+      port        = var.container_port
 
       # Theres nothing to attach here in this definition. Instead, ECS will
       # attach the IPs of the tasks to this target group.
       create_attachment = false
 
       health_check = {
-        path = "/health"
-        healthy_threshold = 5
+        path                = "/health"
+        healthy_threshold   = 5
         unhealthy_threshold = 2
       }
     }
@@ -64,8 +64,8 @@ resource "aws_acm_certificate" "endpoint" {
 }
 
 resource "aws_route53_record" "endpoint" {
-  name = var.domain
-  type = "A"
+  name    = var.domain
+  type    = "A"
   zone_id = data.aws_route53_zone.domain.zone_id
 
   alias {

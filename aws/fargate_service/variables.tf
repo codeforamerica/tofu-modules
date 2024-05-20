@@ -5,7 +5,7 @@ variable "container_port" {
 }
 
 variable "domain" {
-  type = string
+  type        = string
   description = "Domain name for the service."
 }
 
@@ -23,9 +23,9 @@ variable "force_delete" {
 
 # TODO: Support external images?
 variable "image_tag" {
-  type = string
+  type        = string
   description = "Tag for the image to be deployed."
-  default = "latest"
+  default     = "latest"
 }
 
 variable "internal" {
@@ -61,7 +61,7 @@ variable "project" {
 }
 
 variable "project_short" {
-  type = string
+  type        = string
   description = "Short name for the project. Used in resource names with character limits."
 }
 
@@ -71,12 +71,12 @@ variable "public_subnets" {
 }
 
 variable "service" {
-  type = string
+  type        = string
   description = "Service that these resources are supporting. Example: 'api', 'web', 'worker'"
 }
 
 variable "service_short" {
-  type = string
+  type        = string
   description = "Short name for the service. Used in resource names with character limits."
 }
 
