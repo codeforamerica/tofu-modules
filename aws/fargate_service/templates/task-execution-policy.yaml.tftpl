@@ -1,0 +1,24 @@
+Version: "2012-10-17"
+Statement:
+- Sid: ECRAuthToken
+  Effect: Allow
+  Action:
+  - ecr:GetAuthorizationToken
+  Resource: "*"
+- Sid: ECRRepositoryAccess
+  Effect: Allow
+  Action:
+  - ecr:BatchCheckLayerAvailability
+  - ecr:GetDownloadUrlForLayer
+  - ecr:BatchGetImage
+  Resource: "${ecr_arn}"
+- Sid: LogWrite
+  Effect: Allow
+  Action:
+  - logs:CreateLogStream
+  - logs:PutLogEvents
+  Resource: "*"
+  Condition:
+    StringEquals:
+      aws:RequestTag/project: "${project}"
+      aws:RequestTag/environment: "${environment}"

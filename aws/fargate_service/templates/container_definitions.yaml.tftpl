@@ -1,0 +1,14 @@
+- name: "${name}"
+  image: "${image}"
+  cpu: ${cpu}
+  memory: ${memory}
+  memoryReservation: ${memory}
+  essential: true
+  logConfiguration:
+    logDriver: awslogs
+    options:
+      awslogs-group: "${log_group}"
+      awslogs-region: "${region}"
+      awslogs-stream-prefix: "ecs"
+  portMappings:
+    - containerPort: ${container_port}

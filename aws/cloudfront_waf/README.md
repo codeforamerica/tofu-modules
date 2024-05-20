@@ -13,10 +13,10 @@ to match your desired configuration. For example, to create a new distribution
 module "cloudfront_waf" {
   source = "github.com/codeforamerica/tofu-modules/aws/cloudfront_waf"
 
-  project = "my-project"
+  project     = "my-project"
   environment = "dev"
-  domain = "my-project.org"
-  log_bucket = module.logging.bucket
+  domain      = "my-project.org"
+  log_bucket  = module.logging.bucket
 }
 ```
 

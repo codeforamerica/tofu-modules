@@ -1,0 +1,10 @@
+rules:
+- rulePriority: 1
+  description: Expire untagged images older than ${untagged_image_retention} days
+  selection:
+    tagStatus: untagged
+    countType: sinceImagePushed
+    countUnit: days
+    countNumber: ${untagged_image_retention}
+  action:
+    type: expire
