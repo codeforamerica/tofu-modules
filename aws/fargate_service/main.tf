@@ -29,9 +29,7 @@ module "endpoint_security_group" {
   # Allow all egress
   egress_cidr_blocks      = [data.aws_vpc.current.cidr_block]
   egress_rules            = ["all-all"]
-#   egress_cidr_blocks      = ["0.0.0.0/0"]
   egress_ipv6_cidr_blocks = []
-#   egress_rules            = ["all-all"]
 }
 
 # TODO: Determine how we can best restrict the egress rules.

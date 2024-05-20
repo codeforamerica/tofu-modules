@@ -1,7 +1,7 @@
 module "alb" {
   source  = "terraform-aws-modules/alb/aws"
   version = "~> 9.9"
-  enable_deletion_protection = false
+  enable_deletion_protection = !var.force_delete
 
   name               = local.prefix_short
   load_balancer_type = "application"
