@@ -14,8 +14,18 @@ to match your desired configuration. For example:
 module "cloudfront_waf" {
   source = "github.com/codeforamerica/tofu-modules/aws/fargate_service"
 
-  project        = "my-project"
-  environment    = "dev"
+  project       = "my-project"
+  project_short = "my-proj"
+  environment   = "dev"
+  service       = "worker"
+  service_short = "wrk"
+
+  domain          = "dev.worker.my-project.org"
+  vpc_id          = module.vpc.vpc_id
+  private_subnets = module.vpc.private_subnets
+  public_subnets  = module.vpc.public_subnets
+  logging_key_id  = module.logging.kms_key_arn
+  container_port  = 3000
 }
 ```
 

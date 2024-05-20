@@ -14,7 +14,7 @@ to match your desired configuration. For example:
 module "backend" {
   source = "github.com/codeforamerica/tofu-modules/aws/backend"
 
-  project = "my-project"
+  project     = "my-project"
   environment = "dev"
 }
 ```
@@ -35,7 +35,7 @@ Add the backend configuration to your `main.tf` file:
 terraform {
   backend "s3" {
     bucket = "my-project-dev-tfstate"
-    key = "my-project.tfstate" # Choose an appropriate key
+    key    = "my-project.tfstate" # Choose an appropriate key
     region = "us-east-1"
   }
 }
