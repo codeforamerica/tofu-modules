@@ -15,6 +15,13 @@ variable "environment" {
   default     = "dev"
 }
 
+variable "environment_variables" {
+  type        = map(string)
+  description = "Environment variables to set on the container."
+  default     = {}
+
+}
+
 variable "force_delete" {
   type        = bool
   description = "Force deletion of resources. If changing to true, be sure to apply before destroying."

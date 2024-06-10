@@ -1,10 +1,10 @@
 # TODO: Create our own IAM role for flow logs to avoid a wildcard in the policy.
 #trivy:ignore:avd-aws-0057
 module "vpc" {
-  source = "terraform-aws-modules/vpc/aws"
+  source  = "terraform-aws-modules/vpc/aws"
   version = "~> 5.8"
   # TODO: Support more dynamic az count.
-  azs    = slice(local.azs, 0, 3)
+  azs = slice(local.azs, 0, 3)
 
   name = local.prefix
   cidr = var.cidr
@@ -125,29 +125,29 @@ module "endpoints" {
   endpoints = {
     s3 = {
       service = "s3"
-      tags = { Name = "${local.prefix}-s3" }
+      tags    = { Name = "${local.prefix}-s3" }
     },
     ssm = {
       service             = "ssm"
-      tags = { Name = "${local.prefix}-ssm" }
+      tags                = { Name = "${local.prefix}-ssm" }
       subnet_ids          = module.vpc.private_subnets
       private_dns_enabled = true
     },
     ssmmessages = {
       service             = "ssmmessages"
-      tags = { Name = "${local.prefix}-ssmmessages" }
+      tags                = { Name = "${local.prefix}-ssmmessages" }
       subnet_ids          = module.vpc.private_subnets
       private_dns_enabled = true
     },
     ec2 = {
       service             = "ec2"
-      tags = { Name = "${local.prefix}-ec2" }
+      tags                = { Name = "${local.prefix}-ec2" }
       subnet_ids          = module.vpc.private_subnets
       private_dns_enabled = true
     },
     ec2messages = {
       service             = "ec2messages"
-      tags = { Name = "${local.prefix}-ec2messages" }
+      tags                = { Name = "${local.prefix}-ec2messages" }
       subnet_ids          = module.vpc.private_subnets
       private_dns_enabled = true
     },
