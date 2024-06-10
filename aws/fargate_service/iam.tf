@@ -29,6 +29,7 @@ resource "aws_iam_role" "execution" {
   managed_policy_arns = [
     #     aws_iam_policy.execution.arn
     "arn:${data.aws_partition.current.partition}:iam::aws:policy/service-role/AmazonECSTaskExecutionRolePolicy",
+    "arn:${data.aws_partition.current.partition}:iam::aws:policy/CloudWatchAgentServerPolicy",
   ]
 }
 
@@ -51,6 +52,7 @@ resource "aws_iam_role" "task" {
 
   managed_policy_arns = [
     "arn:${data.aws_partition.current.partition}:iam::aws:policy/CloudWatchFullAccess",
-    "arn:${data.aws_partition.current.partition}:iam::aws:policy/AmazonSSMFullAccess"
+    "arn:${data.aws_partition.current.partition}:iam::aws:policy/AmazonSSMFullAccess",
+    "arn:${data.aws_partition.current.partition}:iam::aws:policy/CloudWatchAgentServerPolicy",
   ]
 }

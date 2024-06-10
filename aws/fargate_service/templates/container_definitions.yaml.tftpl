@@ -12,3 +12,32 @@
       awslogs-stream-prefix: "ecs"
   portMappings:
     - containerPort: ${container_port}
+  environment:
+    %{~ for key, value in env_vars ~}
+    - name: ${key}
+      value: "${value}"
+    %{~ endfor ~}
+- name: cwagent
+  image: public.ecr.aws/cloudwatch-agent/cloudwatch-agent:latest
+  memory: 512
+  cpu: 256
+  essential: false
+  logConfiguration:
+    logDriver: awslogs
+    options:
+      awslogs-group: "${log_group}"
+      awslogs-region: "${region}"
+      awslogs-stream-prefix: "cwagent"
+  environment:
+    - name: CW_CONFIG_CONTENT
+      value: |
+        {
+          "metrics": {
+            "namespace": "${namespace}",
+            "metrics_collected": {
+              "statsd": {
+                "service_address": ":8125"
+              }
+            }
+          }
+        }

@@ -73,8 +73,8 @@ module "ecs_service" {
   cluster          = module.ecs.arn
   container_port   = var.container_port
   container_name   = local.prefix
-  cpu              = 256
-  memory           = 512
+  cpu              = 512
+  memory           = 1024
   desired_count    = 1
   vpc_subnets      = var.private_subnets
   target_group_arn = module.alb.target_groups["endpoint"].arn
@@ -91,6 +91,8 @@ module "ecs_service" {
       container_port = var.container_port
       log_group      = aws_cloudwatch_log_group.service.name
       region         = data.aws_region.current.name
+      namespace      = "${var.project}/${var.service}"
+      env_vars       = var.environment_variables
     }
   )))
 }
