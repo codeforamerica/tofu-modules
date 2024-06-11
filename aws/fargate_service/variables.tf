@@ -35,6 +35,12 @@ variable "image_tag" {
   default     = "latest"
 }
 
+variable "ingress_cidrs" {
+  type        = list(string)
+  description = "List of CIDR blocks to allow ingress from."
+  default = []
+}
+
 variable "internal" {
   type        = bool
   description = "This is an internal service that should not be exposed to the public Internet."
