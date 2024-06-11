@@ -21,7 +21,7 @@ variable "logging_key_id" {
 }
 
 variable "peers" {
-  type        = map(object({
+  type = map(object({
     account_id = string
     cidr       = string
     region     = string

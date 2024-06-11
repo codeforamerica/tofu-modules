@@ -3,7 +3,7 @@ output "availability_zones" {
 }
 
 output "peer_ids" {
-  value = [ for peer in aws_vpc_peering_connection.peer: peer.id ]
+  value = [for peer in aws_vpc_peering_connection.peer : peer.id]
 }
 
 output "private_subnets" {
