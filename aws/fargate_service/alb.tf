@@ -8,6 +8,7 @@ module "alb" {
   security_groups    = [module.endpoint_security_group.security_group_id]
   subnets            = var.internal ? var.private_subnets : var.public_subnets
   vpc_id             = var.vpc_id
+  internal           = var.internal
 
   # TODO: Support IPv6 and/or dualstack.
   ip_address_type = "ipv4"
