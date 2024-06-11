@@ -11,28 +11,6 @@ resource "aws_vpc_peering_connection" "peer" {
   }
 }
 
-# resource "aws_network_acl_rule" "peer_ingress" {
-#   for_each = var.peers
-#
-#   network_acl_id = module.vpc.default_network_acl_id
-#   rule_number    = 200
-#   egress         = false
-#   protocol       = "-1"
-#   rule_action    = "allow"
-#   cidr_block     = each.value.cidr
-# }
-
-# resource "aws_network_acl_rule" "peer_egress" {
-#   for_each = var.peers
-#
-#   network_acl_id = module.vpc.default_network_acl_id
-#   rule_number    = 300
-#   egress         = true
-#   protocol       = "-1"
-#   rule_action    = "allow"
-#   cidr_block     = each.value.cidr
-# }
-
 resource "aws_route" "peer" {
   for_each = tomap({
     for route in local.peer_routes : route.key => route
