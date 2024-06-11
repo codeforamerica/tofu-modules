@@ -23,6 +23,7 @@ variable "logging_key_id" {
 variable "peers" {
   type        = map(object({
     account_id = string
+    cidr       = string
     region     = string
     vpc_id     = string
   }))
