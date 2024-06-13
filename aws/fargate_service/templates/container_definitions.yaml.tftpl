@@ -10,6 +10,8 @@
       awslogs-group: "${log_group}"
       awslogs-region: "${region}"
       awslogs-stream-prefix: "ecs"
+  linuxParameters:
+    initProcessEnabled: true
   portMappings:
     - containerPort: ${container_port}
   environment:
