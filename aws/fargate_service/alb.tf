@@ -56,7 +56,7 @@ module "alb" {
 }
 
 resource "aws_acm_certificate" "endpoint" {
-  domain_name       = var.domain
+  domain_name       = local.fqdn
   validation_method = "DNS"
 
   lifecycle {
@@ -65,7 +65,7 @@ resource "aws_acm_certificate" "endpoint" {
 }
 
 resource "aws_route53_record" "endpoint" {
-  name    = var.domain
+  name    = local.fqdn
   type    = "A"
   zone_id = data.aws_route53_zone.domain.zone_id
 

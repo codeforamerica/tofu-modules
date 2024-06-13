@@ -99,6 +99,12 @@ variable "service_short" {
   description = "Short name for the service. Used in resource names with character limits."
 }
 
+variable "subdomain" {
+  type        = string
+  description = "Optional subdomain for the service."
+  default = ""
+}
+
 variable "untagged_image_retention" {
   type        = number
   default     = 14
