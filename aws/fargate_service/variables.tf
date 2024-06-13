@@ -9,6 +9,12 @@ variable "domain" {
   description = "Domain name for the service."
 }
 
+variable "enable_execute_command" {
+  type = bool
+  description = "Enable ECS Exec for tasks within the service."
+  default = false
+}
+
 variable "environment" {
   type        = string
   description = "Environment for the deployment."

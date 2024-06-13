@@ -86,6 +86,7 @@ module "ecs_service" {
   security_groups  = [module.task_security_group.security_group_id]
   iam_daemon_role  = aws_iam_role.execution.arn
   iam_task_role    = aws_iam_role.task.arn
+  enable_execute_command = var.enable_execute_command
 
   container_definitions = jsonencode(yamldecode(templatefile(
     "${path.module}/templates/container_definitions.yaml.tftpl", {
