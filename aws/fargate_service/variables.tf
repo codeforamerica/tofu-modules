@@ -41,6 +41,12 @@ variable "image_tag" {
   default     = "latest"
 }
 
+variable "image_tags_mutable" {
+  type        = bool
+  description = "Whether image tags in the repository can be mutated."
+  default     = false
+}
+
 variable "ingress_cidrs" {
   type        = list(string)
   description = "List of CIDR blocks to allow ingress from."

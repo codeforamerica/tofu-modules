@@ -60,6 +60,7 @@ tofu init -upgrade
 | environment              | Environment for the project.                                                          | `string` | `"dev"`    | no       |
 | force_delete             | Force deletion of resources. If changing to true, be sure to apply before destroying. | `bool`   | `false`    | no       |
 | image_tag                | Tag of the container image to be deployed.                                            | `string` | `"latest"` | no       |
+| image_tags_mutable       | Whether the container repository allows tags to be mutated.                           | `bool`   | `false`    | no       |
 | ingress_cidrs            | List of additional CIDR blocks to allow traffic from.                                 | `list`   | `[]`       | no       |
 | internal                 | Creates an internal ALB instead of a public one.                                      | `bool`   | `false`    | no       |
 | key_recovery_period      | Number of days to recover the service KMS key after deletion.                         | `number` | `30`       | no       |
