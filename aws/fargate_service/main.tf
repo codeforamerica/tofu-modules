@@ -99,6 +99,7 @@ module "ecs_service" {
       region         = data.aws_region.current.name
       namespace      = "${var.project}/${var.service}"
       env_vars       = var.environment_variables
+      otel_log_level = var.otel_log_level
     }
   )))
 }

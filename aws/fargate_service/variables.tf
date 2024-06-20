@@ -69,6 +69,12 @@ variable "logging_key_id" {
   description = "KMS key ID for encrypting logs."
 }
 
+variable "otel_log_level" {
+  type        = string
+  description = "Log level for the OpenTelemetry collector."
+  default     = "info"
+}
+
 variable "private_subnets" {
   type        = list(string)
   description = "List of private subnets."
