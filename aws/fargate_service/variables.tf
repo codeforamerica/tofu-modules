@@ -10,9 +10,9 @@ variable "domain" {
 }
 
 variable "enable_execute_command" {
-  type = bool
+  type        = bool
   description = "Enable ECS Exec for tasks within the service."
-  default = false
+  default     = false
 }
 
 variable "environment" {
@@ -44,7 +44,7 @@ variable "image_tag" {
 variable "ingress_cidrs" {
   type        = list(string)
   description = "List of CIDR blocks to allow ingress from."
-  default = []
+  default     = []
 }
 
 variable "internal" {
@@ -102,7 +102,7 @@ variable "service_short" {
 variable "subdomain" {
   type        = string
   description = "Optional subdomain for the service."
-  default = ""
+  default     = ""
 }
 
 variable "untagged_image_retention" {

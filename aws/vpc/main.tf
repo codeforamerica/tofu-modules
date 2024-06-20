@@ -127,7 +127,7 @@ module "endpoints" {
   source  = "terraform-aws-modules/vpc/aws//modules/vpc-endpoints"
   version = "~> 5.8"
 
-  create_security_group = true
+  create_security_group      = true
   security_group_name_prefix = "${local.prefix}-endpoints-"
   security_group_description = "Allow VPC traffic to reach VPC endpoints."
   security_group_rules = {
