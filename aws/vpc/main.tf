@@ -127,6 +127,16 @@ module "endpoints" {
   source  = "terraform-aws-modules/vpc/aws//modules/vpc-endpoints"
   version = "~> 5.8"
 
+  create_security_group = true
+  security_group_name_prefix = "${local.prefix}-endpoints-"
+  security_group_description = "Allow VPC traffic to reach VPC endpoints."
+  security_group_rules = {
+    ingress_https = {
+      description = "Allow HTTPS traffic from the VPC to the VPC endpoints."
+      cidr_blocks = [module.vpc.vpc_cidr_block]
+    }
+  }
+
   vpc_id = module.vpc.vpc_id
   endpoints = {
     s3 = {
