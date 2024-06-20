@@ -6,9 +6,9 @@ module "alb" {
   name               = local.prefix_short
   load_balancer_type = "application"
   security_groups    = [module.endpoint_security_group.security_group_id]
-  subnets            = var.internal ? var.private_subnets : var.public_subnets
+  subnets            = var.public ? var.public_subnets : var.private_subnets
   vpc_id             = var.vpc_id
-  internal           = var.internal
+  internal           = !var.public
 
   # TODO: Support IPv6 and/or dualstack.
   ip_address_type = "ipv4"

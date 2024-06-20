@@ -62,9 +62,9 @@ tofu init -upgrade
 | image_tag                | Tag of the container image to be deployed.                                            | `string` | `"latest"` | no       |
 | image_tags_mutable       | Whether the container repository allows tags to be mutated.                           | `bool`   | `false`    | no       |
 | ingress_cidrs            | List of additional CIDR blocks to allow traffic from.                                 | `list`   | `[]`       | no       |
-| internal                 | Creates an internal ALB instead of a public one.                                      | `bool`   | `false`    | no       |
 | key_recovery_period      | Number of days to recover the service KMS key after deletion.                         | `number` | `30`       | no       |
 | log_retention_period     | Retention period for flow logs, in days.                                              | `number` | `30`       | no       |
+| public                   | Whether the service should be exposed to the public Internet.                         | `bool`   | `false`    | no       |
 | subdomain                | Optional subdomain for the service, to be appended to the domain for DNS.             | `string` | `""`       | no       |
 | untagged_image_retention | Retention period (after push) for untagged images, in days.                           | `number` | `14`       | no       |
 

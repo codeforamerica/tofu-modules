@@ -26,7 +26,7 @@ module "endpoint_security_group" {
 
   # Ingress for HTTP
   ingress_cidr_blocks = concat(
-    [var.internal ? data.aws_vpc.current.cidr_block : "0.0.0.0/0"],
+    [var.public ? "0.0.0.0/0" : data.aws_vpc.current.cidr_block],
     var.ingress_cidrs
   )
   ingress_rules = ["http-80-tcp", "https-443-tcp"]

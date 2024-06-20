@@ -53,12 +53,6 @@ variable "ingress_cidrs" {
   default     = []
 }
 
-variable "internal" {
-  type        = bool
-  description = "This is an internal service that should not be exposed to the public Internet."
-  default     = false
-}
-
 variable "key_recovery_period" {
   type        = number
   default     = 30
@@ -83,6 +77,12 @@ variable "private_subnets" {
 variable "project" {
   type        = string
   description = "Project that these resources are supporting."
+}
+
+variable "public" {
+  type        = bool
+  description = "This is an internal service that should not be exposed to the public Internet."
+  default     = false
 }
 
 variable "project_short" {
