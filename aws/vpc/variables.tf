@@ -29,6 +29,7 @@ variable "peers" {
   }))
 
   description = "List of VPC peering connections."
+  default = {}
 }
 
 variable "private_subnets" {
