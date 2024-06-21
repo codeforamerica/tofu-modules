@@ -44,25 +44,30 @@ tofu init -upgrade
 
 ## Inputs
 
-| Name                     | Description                                                                            | Type     | Default    | Required |
-|--------------------------|----------------------------------------------------------------------------------------|----------|------------|----------|
-| domain                   | Domain name for service. Example: `"staging.service.org"`                              | `string` | n/a        | yes      |
-| logging_key_id           | KMS key to use for log encryption.                                                     | `string` | n/a        | yes      |
-| private_subnets          | List of private subnet CIDR blocks.                                                    | `list`   | n/a        | yes      |
-| project                  | Name of the project.                                                                   | `string` | n/a        | yes      |
-| project_short            | Short name for the project. Used in resource names with character limits.              | `string` | n/a        | yes      |
-| public_subnets           | List of public subnet CIDR blocks.                                                     | `list`   | n/a        | yes      |
-| service                  | Service that these resources are supporting. Example: `"api"`, `"web"`, `"worker"`     | `string` | n/a        | yes      |
-| service_short            | Short name for the service. Used in resource names with character limits.              | `string` | n/a        | yes      |
-| vpc_id                   | Id of the VPC to deploy into.                                                          | `string` | n/a        | yes      |
-| container_port           | Port the container listens on.                                                         | `number` | `80`       | no       |
-| environment              | Environment for the project.                                                           | `string` | `"dev"`    | no       |
-| force_delete             | Force deletion of resources. If changing to true, be sure to apply before destroying.  | `bool`   | `false`    | no       |
-| image_tag                | Tag of the container image to be deployed.                                             | `string` | `"latest"` | no       |
-| internal                 | Creates an internal ALB instead of a public one.                                       | `bool`   | `false`    | no       |
-| key_recovery_period      | Number of days to recover the service KMS key after deletion.                          | `number` | `30`       | no       |
-| log_retention_period     | Retention period for flow logs, in days.                                               | `number` | `30`       | no       |
-| untagged_image_retention | Retention period (after push) for untagged images, in days.                            | `number` | `14`       | no       |
+| Name                     | Description                                                                           | Type     | Default    | Required |
+|--------------------------|---------------------------------------------------------------------------------------|----------|------------|----------|
+| domain                   | Domain name for service. Example: `"staging.service.org"`                             | `string` | n/a        | yes      |
+| logging_key_id           | KMS key to use for log encryption.                                                    | `string` | n/a        | yes      |
+| private_subnets          | List of private subnet CIDR blocks.                                                   | `list`   | n/a        | yes      |
+| project                  | Name of the project.                                                                  | `string` | n/a        | yes      |
+| project_short            | Short name for the project. Used in resource names with character limits.             | `string` | n/a        | yes      |
+| public_subnets           | List of public subnet CIDR blocks.                                                    | `list`   | n/a        | yes      |
+| service                  | Service that these resources are supporting. Example: `"api"`, `"web"`, `"worker"`    | `string` | n/a        | yes      |
+| service_short            | Short name for the service. Used in resource names with character limits.             | `string` | n/a        | yes      |
+| vpc_id                   | Id of the VPC to deploy into.                                                         | `string` | n/a        | yes      |
+| container_port           | Port the container listens on.                                                        | `number` | `80`       | no       |
+| enable_execute_command   | Enable the [ECS ExecuteCommand][ecs-exec] feature.                                    | `bool`   | `false`    | no       |
+| environment              | Environment for the project.                                                          | `string` | `"dev"`    | no       |
+| force_delete             | Force deletion of resources. If changing to true, be sure to apply before destroying. | `bool`   | `false`    | no       |
+| image_tag                | Tag of the container image to be deployed.                                            | `string` | `"latest"` | no       |
+| image_tags_mutable       | Whether the container repository allows tags to be mutated.                           | `bool`   | `false`    | no       |
+| ingress_cidrs            | List of additional CIDR blocks to allow traffic from.                                 | `list`   | `[]`       | no       |
+| key_recovery_period      | Number of days to recover the service KMS key after deletion.                         | `number` | `30`       | no       |
+| log_retention_period     | Retention period for flow logs, in days.                                              | `number` | `30`       | no       |
+| otel_log_level           | Log level for the OpenTelemetry collector.                                            | `string` | `"info"`   | no       |
+| public                   | Whether the service should be exposed to the public Internet.                         | `bool`   | `false`    | no       |
+| subdomain                | Optional subdomain for the service, to be appended to the domain for DNS.             | `string` | `""`       | no       |
+| untagged_image_retention | Retention period (after push) for untagged images, in days.                           | `number` | `14`       | no       |
 
 ## Outputs
 
@@ -70,3 +75,5 @@ tofu init -upgrade
 |--------------|--------------------------------------------------------------|----------|
 | cluster_name | Name of the ECS Fargate cluster.                             | `string` |
 | docker_push  | Commands to push a Docker image to the container repository. | `string` |
+
+[ecs-exec]: https://docs.aws.amazon.com/AmazonECS/latest/developerguide/ecs-exec.html

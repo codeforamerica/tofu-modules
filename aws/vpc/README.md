@@ -38,6 +38,25 @@ To update the source for this module, pass `-upgrade` to `tofu init`:
 tofu init -upgrade
 ```
 
+### VPC Peers
+
+You can create VPC peering connections by passing a named map of VPCs to peer.
+This will only initiate the peering connection from the VPC created by this, the
+peer must be approved on the other side before it can be used.
+
+For example:
+
+```hcl
+peers = {
+  "aptible": {
+    account_id: "123456789012",
+    vpc_id: "vpc-012ab34cde5678fa9",
+    region: "us-east-1",
+    cidr: "10.123.0.0/16"
+  }
+}
+```
+
 ## Inputs
 
 | Name                 | Description                                                                                                 | Type     | Default | Required |
@@ -49,6 +68,7 @@ tofu init -upgrade
 | public_subnets       | List of public subnet CIDR blocks.                                                                          | `list`   | n/a     | yes      |
 | log_retention_period | Retention period for flow logs, in days.                                                                    | `string` | 30      | no       |
 | environment          | Environment for the project.                                                                                | `string` | `"dev"` | no       |
+| peers                | List of VPC peering connections.                                                                            | `map`    | `{}`    | no       |
 | single_nat_gateway   | Create a single NAT gateway, rather than 1 in each private subnet. **_Cheaper, but not highly available._** | `bool`   | `false` | no       |
 
 ## Outputs

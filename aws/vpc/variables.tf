@@ -20,6 +20,17 @@ variable "logging_key_id" {
   description = "KMS key ID for encrypting logs."
 }
 
+variable "peers" {
+  type = map(object({
+    account_id = string
+    cidr       = string
+    region     = string
+    vpc_id     = string
+  }))
+
+  description = "List of VPC peering connections."
+}
+
 variable "private_subnets" {
   type        = list(string)
   description = "List of private subnet CIDR blocks."

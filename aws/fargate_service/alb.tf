@@ -6,8 +6,9 @@ module "alb" {
   name               = local.prefix_short
   load_balancer_type = "application"
   security_groups    = [module.endpoint_security_group.security_group_id]
-  subnets            = var.internal ? var.private_subnets : var.public_subnets
+  subnets            = var.public ? var.public_subnets : var.private_subnets
   vpc_id             = var.vpc_id
+  internal           = !var.public
 
   # TODO: Support IPv6 and/or dualstack.
   ip_address_type = "ipv4"
@@ -55,7 +56,7 @@ module "alb" {
 }
 
 resource "aws_acm_certificate" "endpoint" {
-  domain_name       = var.domain
+  domain_name       = local.fqdn
   validation_method = "DNS"
 
   lifecycle {
@@ -64,7 +65,7 @@ resource "aws_acm_certificate" "endpoint" {
 }
 
 resource "aws_route53_record" "endpoint" {
-  name    = var.domain
+  name    = local.fqdn
   type    = "A"
   zone_id = data.aws_route53_zone.domain.zone_id
 

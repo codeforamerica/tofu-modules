@@ -9,6 +9,12 @@ variable "domain" {
   description = "Domain name for the service."
 }
 
+variable "enable_execute_command" {
+  type        = bool
+  description = "Enable ECS Exec for tasks within the service."
+  default     = false
+}
+
 variable "environment" {
   type        = string
   description = "Environment for the deployment."
@@ -35,10 +41,16 @@ variable "image_tag" {
   default     = "latest"
 }
 
-variable "internal" {
+variable "image_tags_mutable" {
   type        = bool
-  description = "This is an internal service that should not be exposed to the public Internet."
+  description = "Whether image tags in the repository can be mutated."
   default     = false
+}
+
+variable "ingress_cidrs" {
+  type        = list(string)
+  description = "List of CIDR blocks to allow ingress from."
+  default     = []
 }
 
 variable "key_recovery_period" {
@@ -57,6 +69,12 @@ variable "logging_key_id" {
   description = "KMS key ID for encrypting logs."
 }
 
+variable "otel_log_level" {
+  type        = string
+  description = "Log level for the OpenTelemetry collector."
+  default     = "info"
+}
+
 variable "private_subnets" {
   type        = list(string)
   description = "List of private subnets."
@@ -65,6 +83,12 @@ variable "private_subnets" {
 variable "project" {
   type        = string
   description = "Project that these resources are supporting."
+}
+
+variable "public" {
+  type        = bool
+  description = "This is an internal service that should not be exposed to the public Internet."
+  default     = false
 }
 
 variable "project_short" {
@@ -85,6 +109,12 @@ variable "service" {
 variable "service_short" {
   type        = string
   description = "Short name for the service. Used in resource names with character limits."
+}
+
+variable "subdomain" {
+  type        = string
+  description = "Optional subdomain for the service."
+  default     = ""
 }
 
 variable "untagged_image_retention" {

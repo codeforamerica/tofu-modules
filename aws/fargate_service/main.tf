@@ -5,7 +5,8 @@ module "ecr" {
   repository_name               = local.prefix
   repository_image_scan_on_push = true
   repository_encryption_type    = "KMS"
-  repository_kms_key            = aws_kms_key.fargate.arn
+  repository_image_tag_mutability = var.image_tags_mutable ? "MUTABLE" : "IMMUTABLE"
+  repository_kms_key              = aws_kms_key.fargate.arn
   repository_lifecycle_policy = jsonencode(yamldecode(templatefile(
     "${path.module}/templates/repository-lifecycle.yaml.tftpl", {
       untagged_image_retention : var.untagged_image_retention
@@ -23,8 +24,11 @@ module "endpoint_security_group" {
   vpc_id = var.vpc_id
 
   # Ingress for HTTP
-  ingress_cidr_blocks = [var.internal ? data.aws_vpc.current.cidr_block : "0.0.0.0/0"]
-  ingress_rules       = ["http-80-tcp", "https-443-tcp"]
+  ingress_cidr_blocks = concat(
+    [var.public ? "0.0.0.0/0" : data.aws_vpc.current.cidr_block],
+    var.ingress_cidrs
+  )
+  ingress_rules = ["http-80-tcp", "https-443-tcp"]
 
   # Allow all egress
   egress_cidr_blocks      = [data.aws_vpc.current.cidr_block]
@@ -69,18 +73,19 @@ module "ecs_service" {
   version    = "~> 4.2"
   depends_on = [module.alb, module.ecs]
 
-  name             = local.prefix
-  cluster          = module.ecs.arn
-  container_port   = var.container_port
-  container_name   = local.prefix
-  cpu              = 512
-  memory           = 1024
-  desired_count    = 1
-  vpc_subnets      = var.private_subnets
-  target_group_arn = module.alb.target_groups["endpoint"].arn
-  security_groups  = [module.task_security_group.security_group_id]
-  iam_daemon_role  = aws_iam_role.execution.arn
-  iam_task_role    = aws_iam_role.task.arn
+  name                   = local.prefix
+  cluster                = module.ecs.arn
+  container_port         = var.container_port
+  container_name         = local.prefix
+  cpu                    = 512
+  memory                 = 1024
+  desired_count          = 1
+  vpc_subnets            = var.private_subnets
+  target_group_arn       = module.alb.target_groups["endpoint"].arn
+  security_groups        = [module.task_security_group.security_group_id]
+  iam_daemon_role        = aws_iam_role.execution.arn
+  iam_task_role          = aws_iam_role.task.arn
+  enable_execute_command = var.enable_execute_command
 
   container_definitions = jsonencode(yamldecode(templatefile(
     "${path.module}/templates/container_definitions.yaml.tftpl", {
@@ -93,6 +98,7 @@ module "ecs_service" {
       region         = data.aws_region.current.name
       namespace      = "${var.project}/${var.service}"
       env_vars       = var.environment_variables
+      otel_log_level = var.otel_log_level
     }
   )))
 }
