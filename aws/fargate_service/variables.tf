@@ -21,11 +21,16 @@ variable "environment" {
   default     = "dev"
 }
 
+variable "environment_secrets" {
+  type        = map(string)
+  description = "Secrets to be injected as environment variables on the container."
+  default     = {}
+}
+
 variable "environment_variables" {
   type        = map(string)
   description = "Environment variables to set on the container."
   default     = {}
-
 }
 
 variable "force_delete" {
@@ -99,6 +104,19 @@ variable "project_short" {
 variable "public_subnets" {
   type        = list(string)
   description = "List of public subnets."
+}
+
+# TODO: Support rotation.
+variable "secrets_manager_secrets" {
+  type = map(object({
+    create_random_password = optional(bool, false)
+    description            = string
+    recovery_window        = optional(number, 30)
+    start_value            = optional(string, "{}")
+  }))
+
+  description = "List of VPC peering connections."
+  default     = {}
 }
 
 variable "service" {

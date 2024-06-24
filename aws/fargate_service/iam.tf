@@ -9,6 +9,15 @@ resource "aws_iam_policy" "execution" {
   })))
 }
 
+resource "aws_iam_policy" "secrets" {
+  name_prefix = "${local.prefix}-secrets-access-"
+  description = "Allow acceess to ${var.service} secrets for ${var.project} ${var.environment}."
+
+  policy = jsonencode(yamldecode(templatefile("${path.module}/templates/secrets-access-policy.yaml.tftpl", {
+    secrets = module.secrets_manager
+  })))
+}
+
 resource "aws_iam_role" "execution" {
   name        = "${local.prefix}-execution"
   description = "${var.service} task execution role for ${var.project} ${var.environment}."
@@ -28,6 +37,7 @@ resource "aws_iam_role" "execution" {
 
   managed_policy_arns = [
     #     aws_iam_policy.execution.arn
+    aws_iam_policy.secrets.arn,
     "arn:${data.aws_partition.current.partition}:iam::aws:policy/service-role/AmazonECSTaskExecutionRolePolicy",
     "arn:${data.aws_partition.current.partition}:iam::aws:policy/CloudWatchAgentServerPolicy",
   ]
@@ -51,6 +61,7 @@ resource "aws_iam_role" "task" {
   })
 
   managed_policy_arns = [
+    aws_iam_policy.secrets.arn,
     "arn:${data.aws_partition.current.partition}:iam::aws:policy/CloudWatchFullAccess",
     "arn:${data.aws_partition.current.partition}:iam::aws:policy/AmazonSSMFullAccess",
     "arn:${data.aws_partition.current.partition}:iam::aws:policy/CloudWatchAgentServerPolicy",

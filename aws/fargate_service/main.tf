@@ -2,9 +2,9 @@ module "ecr" {
   source  = "terraform-aws-modules/ecr/aws"
   version = "~> 2.2"
 
-  repository_name               = local.prefix
-  repository_image_scan_on_push = true
-  repository_encryption_type    = "KMS"
+  repository_name                 = local.prefix
+  repository_image_scan_on_push   = true
+  repository_encryption_type      = "KMS"
   repository_image_tag_mutability = var.image_tags_mutable ? "MUTABLE" : "IMMUTABLE"
   repository_kms_key              = aws_kms_key.fargate.arn
   repository_lifecycle_policy = jsonencode(yamldecode(templatefile(
@@ -99,6 +99,12 @@ module "ecs_service" {
       namespace      = "${var.project}/${var.service}"
       env_vars       = var.environment_variables
       otel_log_level = var.otel_log_level
+
+      # Split defined secrets on ":" and use the name to get the arn.
+      env_secrets = {
+        for key, value in var.environment_secrets :
+        key => "${module.secrets_manager[split(":", value)[0]].secret_arn}:${split(":", value)[1]}::"
+      }
     }
   )))
 }
