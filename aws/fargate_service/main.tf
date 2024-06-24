@@ -2,9 +2,9 @@ module "ecr" {
   source  = "terraform-aws-modules/ecr/aws"
   version = "~> 2.2"
 
-  repository_name               = local.prefix
-  repository_image_scan_on_push = true
-  repository_encryption_type    = "KMS"
+  repository_name                 = local.prefix
+  repository_image_scan_on_push   = true
+  repository_encryption_type      = "KMS"
   repository_image_tag_mutability = var.image_tags_mutable ? "MUTABLE" : "IMMUTABLE"
   repository_kms_key              = aws_kms_key.fargate.arn
   repository_lifecycle_policy = jsonencode(yamldecode(templatefile(

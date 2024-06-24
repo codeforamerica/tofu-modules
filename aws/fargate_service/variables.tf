@@ -105,12 +105,12 @@ variable "public_subnets" {
 variable "secrets_manager_secrets" {
   type = map(object({
     create_random_password = optional(bool, false)
-    description = string
-    recovery_window = optional(number, 30)
+    description            = string
+    recovery_window        = optional(number, 30)
   }))
 
   description = "List of VPC peering connections."
-  default = {}
+  default     = {}
 }
 
 variable "service" {

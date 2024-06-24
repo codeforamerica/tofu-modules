@@ -14,7 +14,7 @@ resource "aws_iam_policy" "secrets" {
   description = "Allow acceess to ${var.service} secrets for ${var.project} ${var.environment}."
 
   policy = jsonencode(yamldecode(templatefile("${path.module}/templates/secrets-access-policy.yaml.tftpl", {
-    secrets     = module.secrets_manager
+    secrets = module.secrets_manager
   })))
 }
 
