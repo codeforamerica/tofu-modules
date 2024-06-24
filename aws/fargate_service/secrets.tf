@@ -9,6 +9,7 @@ module "secrets_manager" {
   description             = each.value.description
   recovery_window_in_days = each.value.recovery_window
   kms_key_id              = aws_kms_alias.fargate.id
+  secret_string           = each.value.start_value
 
   ignore_secret_changes = true
 }

@@ -107,6 +107,7 @@ variable "secrets_manager_secrets" {
     create_random_password = optional(bool, false)
     description            = string
     recovery_window        = optional(number, 30)
+    start_value            = optional(string, "{}")
   }))
 
   description = "List of VPC peering connections."
