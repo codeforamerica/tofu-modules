@@ -94,9 +94,9 @@ secrets_manager_secrets = {
 | Name                   | Description                                                  | Type     | Default | Required |
 |------------------------|--------------------------------------------------------------|----------|---------|----------|
 | description            | Description of the secret.                                   | `string` | n/a     | yes      |
-| recovery_window        | Number of days that a secret can be recovered after deltion. | `string` | `30`     | no       |
+| recovery_window        | Number of days that a secret can be recovered after deltion. | `string` | `30`    | no       |
 | create_random_password | Creates a random password as the staring value.              | `bool`   | `false` | no       |
-| start_value            | Value to be set into the secret at creation.                 | `string` | `"{}"` | no       |
+| start_value            | Value to be set into the secret at creation.                 | `string` | `"{}"`  | no       |
 
 ### environment_secrets
 
