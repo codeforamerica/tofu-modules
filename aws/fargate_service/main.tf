@@ -99,6 +99,12 @@ module "ecs_service" {
       namespace      = "${var.project}/${var.service}"
       env_vars       = var.environment_variables
       otel_log_level = var.otel_log_level
+
+      # Split defined secrets on ":" and use the name to get the arn.
+      env_secrets = {
+        for key, value in var.environment_secrets :
+        key => "${module.secrets_manager[split(":", value)[0]].secret_arn}:${split(":", value)[1]}::"
+      }
     }
   )))
 }

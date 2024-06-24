@@ -19,6 +19,11 @@
     - name: ${key}
       value: "${value}"
     %{~ endfor ~}
+  secrets:
+    %{~ for key, value in env_secrets ~}
+    - name: ${key}
+      valueFrom: "${value}"
+    %{~ endfor ~}
 - name: otel-collector
   image: public.ecr.aws/aws-observability/aws-otel-collector:latest
   memory: 512

@@ -21,11 +21,16 @@ variable "environment" {
   default     = "dev"
 }
 
+variable "environment_secrets" {
+  type        = map(string)
+  description = "Secrets to be injected as environment variables on the container."
+  default     = {}
+}
+
 variable "environment_variables" {
   type        = map(string)
   description = "Environment variables to set on the container."
   default     = {}
-
 }
 
 variable "force_delete" {
