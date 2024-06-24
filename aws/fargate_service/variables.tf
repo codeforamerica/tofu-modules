@@ -101,6 +101,18 @@ variable "public_subnets" {
   description = "List of public subnets."
 }
 
+# TODO: Support rotation.
+variable "secrets_manager_secrets" {
+  type = map(object({
+    create_random_password = optional(bool, false)
+    description = string
+    recovery_window = optional(number, 30)
+  }))
+
+  description = "List of VPC peering connections."
+  default = {}
+}
+
 variable "service" {
   type        = string
   description = "Service that these resources are supporting. Example: 'api', 'web', 'worker'"
