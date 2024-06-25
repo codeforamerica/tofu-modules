@@ -15,6 +15,7 @@ resource "aws_iam_policy" "secrets" {
 
   policy = jsonencode(yamldecode(templatefile("${path.module}/templates/secrets-access-policy.yaml.tftpl", {
     secrets = module.secrets_manager
+    kms_arn = aws_kms_key.fargate.arn
   })))
 }
 
