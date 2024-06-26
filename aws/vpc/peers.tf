@@ -12,11 +12,11 @@ resource "aws_vpc_peering_connection" "peer" {
 }
 
 resource "aws_route" "peer" {
-  for_each = tomap({
-    for route in local.peer_routes : route.key => route
-  })
+  for_each = {
+    for route in local.peer_routes : "${route.key}-${route.table_id}" => route
+  }
 
   route_table_id            = each.value.table_id
   destination_cidr_block    = each.value.cidr
-  vpc_peering_connection_id = aws_vpc_peering_connection.peer[each.key].id
+  vpc_peering_connection_id = aws_vpc_peering_connection.peer[each.value.key].id
 }
