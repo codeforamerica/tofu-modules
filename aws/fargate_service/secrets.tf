@@ -21,6 +21,6 @@ module "otel_config" {
   name        = "${var.project}/${var.environment}/${var.service}/otel"
   description = "Configuration for the OpenTelemetry collector."
   value = templatefile("${path.module}/templates/aws-otel-config.yaml.tftpl", {
-    namespace = "${var.project}/${var.service}"
+    app_namespace = "${var.project}/${var.service}"
   })
 }
