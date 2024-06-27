@@ -38,4 +38,7 @@
   environment:
     - name: OTEL_LOG_LEVEL
       value: ${otel_log_level}
+  secrets:
+    - name: AOT_CONFIG_CONTENT
+      valueFrom: "${otel_ssm_arn}"
   command: ["--config=/etc/ecs/container-insights/otel-task-metrics-config.yaml"]
