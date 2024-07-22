@@ -14,7 +14,7 @@ resource "aws_iam_policy" "secrets" {
   description = "Allow acceess to ${var.service} secrets for ${var.project} ${var.environment}."
 
   policy = jsonencode(yamldecode(templatefile("${path.module}/templates/secrets-access-policy.yaml.tftpl", {
-    secrets      = module.secrets_manager
+    secrets      = toset(local.authorized_secrets)
     otel_ssm_arn = module.otel_config.ssm_parameter_arn
     kms_arn      = aws_kms_key.fargate.arn
   })))
