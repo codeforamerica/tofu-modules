@@ -73,9 +73,12 @@ peers = {
 
 ## Outputs
 
-| Name               | Description                              | Type     |
-|--------------------|------------------------------------------|----------|
-| availability_zones | List of availability zones with subnets. | `list`   |
-| private_subnets    | List of private subnet CIDRs.            | `list`   |
-| public_subnets     | List of public subnet CIDRs.             | `list`   |
-| vpc_id             | Id of the created VPC.                   | `string` |
+| Name                        | Description                              | Type     |
+|-----------------------------|------------------------------------------|----------|
+| availability_zones          | List of availability zones with subnets. | `list`   |
+| peer_ids                    | Ids of any created peering connections.  | `list`   |
+| private_subnets             | List of private subnet ids.              | `list`   |
+| private_subnets_cidr_blocks | List of private subnet CIDRs.            | `list`   |
+| public_subnets              | List of public subnet ids.               | `list`   |
+| public_subnets_cidr_blocks  | List of public subnet CIDRs.             | `list`   |
+| vpc_id                      | Id of the created VPC.                   | `string` |

@@ -13,7 +13,6 @@ variable "environment" {
 variable "logging_key_arn" {
   type        = string
   description = "ARN of the KMS key for logging."
-  default     = ""
 }
 
 variable "ingress_cidrs" {
@@ -51,7 +50,7 @@ variable "project" {
 
 variable "secrets_key_arn" {
   type        = string
-  description = "ARN of the KMS key for logging."
+  description = "ARN of the KMS key for secrets. This will be used to encrypt database credentials."
 }
 
 variable "service" {
@@ -62,16 +61,16 @@ variable "service" {
 
 variable "skip_final_snapshot" {
   type  = bool
-  description = "Whether to skip the final snapshot when destroying the database."
+  description = "Whether to skip the final snapshot when destroying the database cluster."
   default     = false
 }
 
 variable "subnets" {
   type        = list(string)
-  description = "List of subnet ids the database may use."
+  description = "List of subnet ids the database instances may be placed in"
 }
 
 variable "vpc_id" {
   type = string
-  description = "Id of the VPC to launch the database into."
+  description = "Id of the VPC to launch the database cluster into."
 }
