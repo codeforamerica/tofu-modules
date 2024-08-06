@@ -7,8 +7,11 @@ module "database" {
   engine            = "aurora-postgresql"
   engine_mode       = "provisioned"
   storage_encrypted = true
+  kms_key_id = aws_kms_key.database.id
   master_username   = "root"
   subnets = var.subnets
+  copy_tags_to_snapshot = true
+  snapshot_identifier = var.snapshot_identifier
 
   vpc_id               = var.vpc_id
   security_group_rules = {

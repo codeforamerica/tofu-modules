@@ -59,6 +59,7 @@ tofu init -upgrade
 | max_capacity        | Maximum capacity for the serverless cluster in ACUs.                                                                                       | `number` | `10`    | no       |
 | service             | Optional service that these resources are supporting. Example: 'api', 'web', 'worker'                                                      | `string` | `""`    | no       |
 | skip_final_snapshot | Whether to skip the final snapshot when destroying the database cluster.                                                                   | `bool`   | `false` | no       |
+| snapshot_identifier | Optional name or ARN of the snapshot to restore the cluster from. Only applicable on create.                                               | `bool`   | `false` | no       |
 
 
 ## Outputs

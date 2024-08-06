@@ -65,6 +65,12 @@ variable "skip_final_snapshot" {
   default     = false
 }
 
+variable "snapshot_identifier" {
+  type        = string
+  description = "Optional name or ARN of the snapshot to restore the cluster from. Only applicable on create."
+  default = ""
+}
+
 variable "subnets" {
   type        = list(string)
   description = "List of subnet ids the database instances may be placed in"

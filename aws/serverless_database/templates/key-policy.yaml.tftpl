@@ -1,0 +1,38 @@
+Version: '2012-10-17'
+Statement:
+- Sid: Enable IAM User Permissions
+  Effect: Allow
+  Principal:
+    AWS: arn:${partition}:iam::${account_id}:root
+  Action: kms:*
+  Resource: "*"
+- Sid: Allow access through RDS for all principals in the account that are authorized
+    to use RDS
+  Effect: Allow
+  Principal:
+    AWS: "*"
+  Action:
+  - kms:Encrypt
+  - kms:Decrypt
+  - kms:ReEncrypt*
+  - kms:GenerateDataKey*
+  - kms:CreateGrant
+  - kms:ListGrants
+  - kms:DescribeKey
+  Resource: "*"
+  Condition:
+    StringEquals:
+      kms:ViaService: rds.${region}.amazonaws.com
+      kms:CallerAccount: '${account_id}'
+    ForAnyValue:StringEquals:
+      kms:EncryptionContextKeys: aws:rds:db-id
+- Sid: Allow direct access to key metadata to the account
+  Effect: Allow
+  Principal:
+    AWS: arn:${partition}:iam::${account_id}:root
+  Action:
+  - kms:Describe*
+  - kms:Get*
+  - kms:List*
+  - kms:RevokeGrant
+  Resource: "*"
