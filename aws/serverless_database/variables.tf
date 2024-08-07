@@ -10,13 +10,19 @@ variable "environment" {
   default     = "dev"
 }
 
+variable "force_delete" {
+  type        = bool
+  description = "Force deletion of resources. If changing to true, be sure to apply before destroying."
+  default     = false
+}
+
 variable "logging_key_arn" {
   type        = string
   description = "ARN of the KMS key for logging."
 }
 
 variable "ingress_cidrs" {
-  type = list(string)
+  type        = list(string)
   description = "List of CIDR blocks to allow ingress. This is typically your private subnets."
 }
 
@@ -32,13 +38,13 @@ variable "key_recovery_period" {
 }
 
 variable "min_capacity" {
-  type = number
+  type        = number
   description = "Minimum capacity for the serverless cluster in ACUs."
   default     = 2
 }
 
 variable "max_capacity" {
-  type = number
+  type        = number
   description = "Maximum capacity for the serverless cluster in ACUs."
   default     = 10
 }
@@ -56,11 +62,11 @@ variable "secrets_key_arn" {
 variable "service" {
   type        = string
   description = "Optional service that these resources are supporting. Example: 'api', 'web', 'worker'"
-  default = ""
+  default     = ""
 }
 
 variable "skip_final_snapshot" {
-  type  = bool
+  type        = bool
   description = "Whether to skip the final snapshot when destroying the database cluster."
   default     = false
 }
@@ -68,7 +74,7 @@ variable "skip_final_snapshot" {
 variable "snapshot_identifier" {
   type        = string
   description = "Optional name or ARN of the snapshot to restore the cluster from. Only applicable on create."
-  default = ""
+  default     = ""
 }
 
 variable "subnets" {
@@ -77,6 +83,6 @@ variable "subnets" {
 }
 
 variable "vpc_id" {
-  type = string
+  type        = string
   description = "Id of the VPC to launch the database cluster into."
 }

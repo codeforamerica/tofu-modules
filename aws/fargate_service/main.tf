@@ -105,8 +105,8 @@ module "ecs_service" {
       env_secrets = {
         for key, value in var.environment_secrets :
         key => split(":", value)[0] == "arn"
-          ? "${join(":", slice(split(":", value), 0, length(split(":", value)) - 1))}:${split(":", value)[length(split(":", value)) - 1]}::"
-          : "${module.secrets_manager[split(":", value)[0]].secret_arn}:${split(":", value)[1]}::"
+        ? "${join(":", slice(split(":", value), 0, length(split(":", value)) - 1))}:${split(":", value)[length(split(":", value)) - 1]}::"
+        : "${module.secrets_manager[split(":", value)[0]].secret_arn}:${split(":", value)[1]}::"
       }
     }
   )))

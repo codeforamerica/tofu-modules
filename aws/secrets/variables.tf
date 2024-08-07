@@ -37,5 +37,5 @@ variable "secrets" {
 variable "service" {
   type        = string
   description = "Optional service that these resources are supporting. Example: 'api', 'web', 'worker'"
-  default = ""
+  default     = ""
 }
