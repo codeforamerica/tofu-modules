@@ -62,7 +62,7 @@ tofu init -upgrade
 | container_port            | Port the container listens on.                                                        | `number`      | `80`       | no       |
 | enable_execute_command    | Enable the [ECS ExecuteCommand][ecs-exec] feature.                                    | `bool`        | `false`    | no       |
 | environment               | Environment for the project.                                                          | `string`      | `"dev"`    | no       |
-| [environment_secrets]     | Secrets to be injected as environment variables into the contrainer.                  | `map(string)` | `{}`       | no       |
+| [environment_secrets]     | Secrets to be injected as environment variables into the container.                   | `map(string)` | `{}`       | no       |
 | environment_variables     | Environment variables to be set on the container.                                     | `map(string)` | `{}`       | no       |
 | force_delete              | Force deletion of resources. If changing to true, be sure to apply before destroying. | `bool`        | `false`    | no       |
 | image_tag                 | Tag of the container image to be deployed.                                            | `string`      | `"latest"` | no       |
@@ -102,12 +102,14 @@ secrets_manager_secrets = {
 
 An optional map of secrets to be injected as environment variables into the
 container. The key is the name of the environment variable, and the value is the
-name and key of a secret defined using [secrets_manager_secrets], seperated by
-":". For example, to use the `client_id` key from the `example` secret:
+identifier and key of a secret, seperated by ":". The identifier may be the name
+of a secret defined using [secrets_manager_secrets], or the full ARN of an
+existing secret. For example:
 
 ```hcl
 environment_secrets = {
   EXAMPLE_CLIENT_ID = "client:client_id"
+  EXAMPLE_CLIENT_KEY = "arn:aws:secretsmanager:us-east-1:123456789012:secret:project/staging/client:key"
 }
 ```
 

@@ -104,7 +104,9 @@ module "ecs_service" {
       # Split defined secrets on ":" and use the name to get the arn.
       env_secrets = {
         for key, value in var.environment_secrets :
-        key => "${module.secrets_manager[split(":", value)[0]].secret_arn}:${split(":", value)[1]}::"
+        key => split(":", value)[0] == "arn"
+        ? "${join(":", slice(split(":", value), 0, length(split(":", value)) - 1))}:${split(":", value)[length(split(":", value)) - 1]}::"
+        : "${module.secrets_manager[split(":", value)[0]].secret_arn}:${split(":", value)[1]}::"
       }
     }
   )))

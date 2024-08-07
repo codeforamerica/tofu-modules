@@ -1,4 +1,0 @@
-exclude:
-  # If we want to use the common "latest" tag in ECR, we have to allow mutable
-  # tags.
-  - aws-ecr-enforce-immutable-repository

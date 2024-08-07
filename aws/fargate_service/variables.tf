@@ -115,7 +115,7 @@ variable "secrets_manager_secrets" {
     start_value            = optional(string, "{}")
   }))
 
-  description = "List of VPC peering connections."
+  description = "List of Secrets Manager secrets to create."
   default     = {}
 }
 

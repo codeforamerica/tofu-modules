@@ -20,7 +20,7 @@ module "otel_config" {
 
   name        = "/${var.project}/${var.environment}/${var.service}/otel"
   description = "Configuration for the OpenTelemetry collector."
-  tier = "Intelligent-Tiering"
+  tier        = "Intelligent-Tiering"
   value = templatefile("${path.module}/templates/aws-otel-config.yaml.tftpl", {
     app_namespace = "${var.project}/${var.service}"
   })

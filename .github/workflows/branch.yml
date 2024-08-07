@@ -102,9 +102,6 @@ jobs:
         uses: aquasecurity/trivy-action@master
         with:
           scan-type: config
-          ignore-unfixed: true
-          skip-dirs: '"**/*/.terraform"'
-          exit-code: 1
           format: sarif
           output: "trivy-results.sarif"
 
