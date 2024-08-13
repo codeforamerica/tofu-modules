@@ -70,6 +70,7 @@ peers = {
 | environment          | Environment for the project.                                                                                | `string` | `"dev"` | no       |
 | peers                | List of VPC peering connections.                                                                            | `map`    | `{}`    | no       |
 | single_nat_gateway   | Create a single NAT gateway, rather than 1 in each private subnet. **_Cheaper, but not highly available._** | `bool`   | `false` | no       |
+| tags                 | Optional tags to be applied to all resources.                                                               | `list`   | `[]`    | no       |
 
 ## Outputs
 

@@ -64,6 +64,7 @@ You now have a fully configured AWS backend for your project!
 | project             | The name of the project.                                              | `string` | n/a     |   yes    |
 | environment         | The environment for the project.                                      | `string` | `"dev"` |    no    |
 | key_recovery_period | The number of days to retain the KMS key for recovery after deletion. | `number` | `30`    |    no    |
+| tags                | Optional tags to be applied to all resources.                         | `list`   | `[]`    |    no    |
 
 
 ## Outputs
