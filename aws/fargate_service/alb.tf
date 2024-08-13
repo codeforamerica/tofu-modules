@@ -102,6 +102,4 @@ resource "aws_acm_certificate_validation" "endpoint" {
   validation_record_fqdns = [
     for record in aws_route53_record.endpoint_validation : record.fqdn
   ]
-
-  tags = var.tags
 }

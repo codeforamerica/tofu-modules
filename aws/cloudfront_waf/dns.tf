@@ -8,8 +8,6 @@ resource "aws_route53_record" "subdomain" {
     zone_id                = aws_cloudfront_distribution.waf.hosted_zone_id
     evaluate_target_health = false
   }
-
-  tags = var.tags
 }
 
 resource "aws_acm_certificate" "subdomain" {
@@ -40,8 +38,6 @@ resource "aws_route53_record" "validation" {
   ttl             = 300
   type            = each.value.type
   zone_id         = data.aws_route53_zone.domain.zone_id
-
-  tags = var.tags
 }
 
 resource "aws_acm_certificate_validation" "validation" {
@@ -49,6 +45,4 @@ resource "aws_acm_certificate_validation" "validation" {
   validation_record_fqdns = [
     for record in aws_route53_record.validation : record.fqdn
   ]
-
-  tags = var.tags
 }
