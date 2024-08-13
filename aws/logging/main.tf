@@ -17,8 +17,6 @@ resource "aws_s3_bucket_public_access_block" "good_example" {
   block_public_policy     = true
   ignore_public_acls      = true
   restrict_public_buckets = true
-
-  tags = var.tags
 }
 
 #tfsec:ignore:aws-s3-encryption-customer-key
@@ -35,8 +33,6 @@ resource "aws_s3_bucket_server_side_encryption_configuration" "logs" {
       sse_algorithm = "AES256"
     }
   }
-
-  tags = var.tags
 }
 
 resource "aws_s3_bucket_versioning" "logs" {
@@ -45,8 +41,6 @@ resource "aws_s3_bucket_versioning" "logs" {
   versioning_configuration {
     status = "Enabled"
   }
-
-  tags = var.tags
 }
 
 resource "aws_s3_bucket_policy" "logs" {
@@ -57,8 +51,6 @@ resource "aws_s3_bucket_policy" "logs" {
     bucket_arn : aws_s3_bucket.logs.arn,
     elb_account_arn : data.aws_elb_service_account.current.arn
   })))
-
-  tags = var.tags
 }
 
 resource "aws_kms_key" "logs" {
