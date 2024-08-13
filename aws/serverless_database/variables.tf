@@ -82,6 +82,12 @@ variable "subnets" {
   description = "List of subnet ids the database instances may be placed in"
 }
 
+variable "tags" {
+  type        = map(string)
+  description = "Tags to apply to all resources."
+  default = {}
+}
+
 variable "vpc_id" {
   type        = string
   description = "Id of the VPC to launch the database cluster into."

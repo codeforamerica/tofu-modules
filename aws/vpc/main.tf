@@ -123,6 +123,8 @@ module "vpc" {
       to_port     = 80
     }
   ]
+
+  tags = var.tags
 }
 
 module "endpoints" {
@@ -170,4 +172,6 @@ module "endpoints" {
       private_dns_enabled = true
     },
   }
+
+  tags = var.tags
 }

@@ -4,6 +4,8 @@ resource "aws_s3_bucket" "tfstate" {
   lifecycle {
     prevent_destroy = true
   }
+
+  tags = var.tags
 }
 
 resource "aws_s3_bucket_public_access_block" "tfstate" {
@@ -13,6 +15,8 @@ resource "aws_s3_bucket_public_access_block" "tfstate" {
   block_public_policy     = true
   ignore_public_acls      = true
   restrict_public_buckets = true
+
+  tags = var.tags
 }
 
 resource "aws_s3_bucket_server_side_encryption_configuration" "tfstate" {
@@ -26,6 +30,8 @@ resource "aws_s3_bucket_server_side_encryption_configuration" "tfstate" {
       sse_algorithm     = "aws:kms"
     }
   }
+
+  tags = var.tags
 }
 
 resource "aws_s3_bucket_versioning" "tfstate" {
@@ -34,12 +40,16 @@ resource "aws_s3_bucket_versioning" "tfstate" {
   versioning_configuration {
     status = "Enabled"
   }
+
+  tags = var.tags
 }
 
 resource "aws_s3_bucket_logging" "tfstate" {
   bucket        = aws_s3_bucket.tfstate.id
   target_bucket = aws_s3_bucket.tfstate.id
   target_prefix = "${local.aws_logs_path}/s3accesslogs/${aws_s3_bucket.tfstate.id}"
+
+  tags = var.tags
 }
 
 resource "aws_s3_bucket_policy" "tfstate" {
@@ -49,4 +59,6 @@ resource "aws_s3_bucket_policy" "tfstate" {
     partition : data.aws_partition.current.partition
     bucket : aws_s3_bucket.tfstate.bucket
   })
+
+  tags = var.tags
 }

@@ -51,4 +51,6 @@ module "database" {
     one = {}
     two = {}
   }
+
+  tags = var.tags
 }

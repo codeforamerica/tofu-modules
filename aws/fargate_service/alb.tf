@@ -53,6 +53,8 @@ module "alb" {
       }
     }
   }
+
+  tags = var.tags
 }
 
 resource "aws_acm_certificate" "endpoint" {
@@ -62,6 +64,8 @@ resource "aws_acm_certificate" "endpoint" {
   lifecycle {
     create_before_destroy = true
   }
+
+  tags = var.tags
 }
 
 resource "aws_route53_record" "endpoint" {
@@ -74,6 +78,8 @@ resource "aws_route53_record" "endpoint" {
     zone_id                = module.alb.zone_id
     evaluate_target_health = true
   }
+
+  tags = var.tags
 }
 
 resource "aws_route53_record" "endpoint_validation" {
@@ -91,6 +97,8 @@ resource "aws_route53_record" "endpoint_validation" {
   ttl             = 60
   type            = each.value.type
   zone_id         = data.aws_route53_zone.domain.zone_id
+
+  tags = var.tags
 }
 
 resource "aws_acm_certificate_validation" "endpoint" {
@@ -98,4 +106,6 @@ resource "aws_acm_certificate_validation" "endpoint" {
   validation_record_fqdns = [
     for record in aws_route53_record.endpoint_validation : record.fqdn
   ]
+
+  tags = var.tags
 }

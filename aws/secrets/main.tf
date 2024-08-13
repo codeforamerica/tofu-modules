@@ -12,4 +12,6 @@ module "secrets_manager" {
   secret_string           = each.value.start_value
 
   ignore_secret_changes = true
+
+  tags = var.tags
 }

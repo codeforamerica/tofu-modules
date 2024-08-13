@@ -16,11 +16,15 @@ resource "aws_kms_key" "backend" {
     partition : data.aws_partition.current.partition,
     bucket_arn : aws_s3_bucket.tfstate.arn
   })
+
+  tags = var.tags
 }
 
 resource "aws_kms_alias" "backend" {
   name          = "alias/${var.project}/${var.environment}/backend"
   target_key_id = aws_kms_key.backend.id
+
+  tags = var.tags
 }
 
 resource "aws_dynamodb_table" "tfstate_lock" {
@@ -42,6 +46,8 @@ resource "aws_dynamodb_table" "tfstate_lock" {
   point_in_time_recovery {
     enabled = true
   }
+
+  tags = var.tags
 }
 
 output "bucket" {

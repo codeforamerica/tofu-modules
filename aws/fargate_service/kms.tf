@@ -8,9 +8,13 @@ resource "aws_kms_key" "fargate" {
     region : data.aws_region.current.name,
     repository_name : local.prefix,
   })))
+
+  tags = var.tags
 }
 
 resource "aws_kms_alias" "fargate" {
   name          = "alias/${var.project}/${var.environment}/${var.service}"
   target_key_id = aws_kms_key.fargate.id
+
+  tags = var.tags
 }

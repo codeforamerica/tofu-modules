@@ -7,6 +7,8 @@ resource "aws_iam_policy" "execution" {
     environment = var.environment
     ecr_arn     = module.ecr.repository_arn
   })))
+
+  tags = var.tags
 }
 
 resource "aws_iam_policy" "secrets" {
@@ -18,6 +20,8 @@ resource "aws_iam_policy" "secrets" {
     otel_ssm_arn = module.otel_config.ssm_parameter_arn
     kms_arn      = aws_kms_key.fargate.arn
   })))
+
+  tags = var.tags
 }
 
 resource "aws_iam_role" "execution" {
@@ -43,6 +47,8 @@ resource "aws_iam_role" "execution" {
     "arn:${data.aws_partition.current.partition}:iam::aws:policy/service-role/AmazonECSTaskExecutionRolePolicy",
     "arn:${data.aws_partition.current.partition}:iam::aws:policy/CloudWatchAgentServerPolicy",
   ]
+
+  tags = var.tags
 }
 
 resource "aws_iam_role" "task" {
@@ -68,4 +74,6 @@ resource "aws_iam_role" "task" {
     "arn:${data.aws_partition.current.partition}:iam::aws:policy/AmazonSSMFullAccess",
     "arn:${data.aws_partition.current.partition}:iam::aws:policy/CloudWatchAgentServerPolicy",
   ]
+
+  tags = var.tags
 }
