@@ -4,6 +4,8 @@ resource "aws_s3_bucket" "tfstate" {
   lifecycle {
     prevent_destroy = true
   }
+
+  tags = var.tags
 }
 
 resource "aws_s3_bucket_public_access_block" "tfstate" {

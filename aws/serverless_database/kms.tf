@@ -7,6 +7,8 @@ resource "aws_kms_key" "database" {
     partition : data.aws_partition.current.partition,
     region : data.aws_region.current.name,
   })))
+
+  tags = var.tags
 }
 
 resource "aws_kms_alias" "database" {

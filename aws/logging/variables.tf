@@ -19,3 +19,9 @@ variable "project" {
   type        = string
   description = "Project that these resources are supporting."
 }
+
+variable "tags" {
+  type        = map(string)
+  description = "Tags to apply to all resources."
+  default     = {}
+}

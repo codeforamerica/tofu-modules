@@ -135,10 +135,16 @@ variable "subdomain" {
   default     = ""
 }
 
+variable "tags" {
+  type        = map(string)
+  description = "Tags to apply to all resources."
+  default     = {}
+}
+
 variable "untagged_image_retention" {
   type        = number
-  default     = 14
   description = "Retention period (after push) for untagged images, in days."
+  default     = 14
 }
 
 variable "vpc_id" {

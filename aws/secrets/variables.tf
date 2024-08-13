@@ -39,3 +39,9 @@ variable "service" {
   description = "Optional service that these resources are supporting. Example: 'api', 'web', 'worker'"
   default     = ""
 }
+
+variable "tags" {
+  type        = map(string)
+  description = "Tags to apply to all resources."
+  default     = {}
+}

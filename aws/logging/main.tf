@@ -7,6 +7,8 @@ resource "aws_s3_bucket" "logs" {
   lifecycle {
     prevent_destroy = true
   }
+
+  tags = var.tags
 }
 
 resource "aws_s3_bucket_public_access_block" "good_example" {
@@ -63,6 +65,8 @@ resource "aws_kms_key" "logs" {
     project : var.project
     environment : var.environment
   })))
+
+  tags = var.tags
 }
 
 resource "aws_kms_alias" "logs" {

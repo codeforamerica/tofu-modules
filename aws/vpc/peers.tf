@@ -6,9 +6,7 @@ resource "aws_vpc_peering_connection" "peer" {
   vpc_id        = module.vpc.vpc_id
   peer_region   = each.value.region
 
-  tags = {
-    Name = "${local.prefix}-${each.key}"
-  }
+  tags = merge(var.tags, { Name = "${local.prefix}-${each.key}" })
 }
 
 resource "aws_route" "peer" {

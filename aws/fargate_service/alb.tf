@@ -53,6 +53,8 @@ module "alb" {
       }
     }
   }
+
+  tags = var.tags
 }
 
 resource "aws_acm_certificate" "endpoint" {
@@ -62,6 +64,8 @@ resource "aws_acm_certificate" "endpoint" {
   lifecycle {
     create_before_destroy = true
   }
+
+  tags = var.tags
 }
 
 resource "aws_route53_record" "endpoint" {

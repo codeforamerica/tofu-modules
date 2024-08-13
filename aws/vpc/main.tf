@@ -9,8 +9,10 @@ module "vpc" {
   name = local.prefix
   cidr = var.cidr
 
-  private_subnets = var.private_subnets
-  public_subnets  = var.public_subnets
+  private_subnets     = var.private_subnets
+  private_subnet_tags = { use = "private" }
+  public_subnets      = var.public_subnets
+  public_subnet_tags  = { use = "public" }
 
   enable_nat_gateway   = true
   single_nat_gateway   = var.single_nat_gateway
@@ -121,6 +123,8 @@ module "vpc" {
       to_port     = 80
     }
   ]
+
+  tags = var.tags
 }
 
 module "endpoints" {
@@ -168,4 +172,6 @@ module "endpoints" {
       private_dns_enabled = true
     },
   }
+
+  tags = var.tags
 }

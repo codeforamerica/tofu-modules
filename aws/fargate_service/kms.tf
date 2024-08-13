@@ -8,6 +8,8 @@ resource "aws_kms_key" "fargate" {
     region : data.aws_region.current.name,
     repository_name : local.prefix,
   })))
+
+  tags = var.tags
 }
 
 resource "aws_kms_alias" "fargate" {

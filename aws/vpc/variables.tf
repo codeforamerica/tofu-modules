@@ -52,3 +52,9 @@ variable "single_nat_gateway" {
   default     = false
   description = "Enable to deploy one NAT gateway rather than one per subnet. Cheaper, but is not highly available."
 }
+
+variable "tags" {
+  type        = map(string)
+  description = "Tags to apply to all resources."
+  default     = {}
+}

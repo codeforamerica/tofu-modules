@@ -19,6 +19,8 @@ resource "aws_acm_certificate" "subdomain" {
   lifecycle {
     create_before_destroy = true
   }
+
+  tags = var.tags
 }
 
 resource "aws_route53_record" "validation" {

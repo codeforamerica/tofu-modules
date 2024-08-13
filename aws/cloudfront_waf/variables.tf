@@ -30,3 +30,9 @@ variable "subdomain" {
   description = "Subdomain used for this deployment. Defaults to the environment."
   default     = ""
 }
+
+variable "tags" {
+  type        = map(string)
+  description = "Tags to apply to all resources."
+  default     = {}
+}

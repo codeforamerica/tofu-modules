@@ -53,13 +53,14 @@ tofu init -upgrade
 
 ## Inputs
 
-| Name                      | Description                                                                                 | Type          | Default    | Required |
-|---------------------------|---------------------------------------------------------------------------------------------|---------------|------------|----------|
-| project                   | Name of the project.                                                                        | `string`      | n/a        | yes      |
-| environment               | Environment for the project.                                                                | `string`      | `"dev"`    | no       |
-| key_recovery_period       | Number of days to recover the KMS key after deletion.                                       | `number`      | `30`       | no       |
-| [secrets]                 | Secrets to be created.                                                                      | `map(object)` | `{}`       | no       |
-| service                   | Optional service that these resources are supporting. Example: `"api"`, `"web"`, `"worker"` | `string`      | n/a        | no       |
+| Name                | Description                                                                                 | Type          | Default | Required |
+|---------------------|---------------------------------------------------------------------------------------------|---------------|---------|----------|
+| project             | Name of the project.                                                                        | `string`      | n/a     | yes      |
+| environment         | Environment for the project.                                                                | `string`      | `"dev"` | no       |
+| key_recovery_period | Number of days to recover the KMS key after deletion.                                       | `number`      | `30`    | no       |
+| [secrets]           | Secrets to be created.                                                                      | `map(object)` | `{}`    | no       |
+| service             | Optional service that these resources are supporting. Example: `"api"`, `"web"`, `"worker"` | `string`      | n/a     | no       |
+| tags                | Optional tags to be applied to all resources.                                               | `list`        | `[]`    | no       |
 
 ### secrets
 

@@ -43,5 +43,6 @@ tofu init -upgrade
 | environment   | The environment for the project.                                                                    | `string` | `"dev"` | no       |
 | origin_domain | Fully qualified domain name for the origin. Defaults to `origin.${subdomain}.${domain}`.            | `string` | n/a     | no       |
 | subdomain     | Subdomain for the distribution. Defaults to the environment.                                        | `string` | n/a     | no       |
+| tags          | Optional tags to be applied to all resources.                                                       | `list`   | `[]`    | no       |
 
 [distribution]: https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/distribution-working-with.html

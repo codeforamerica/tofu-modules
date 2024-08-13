@@ -82,6 +82,8 @@ resource "aws_cloudfront_distribution" "waf" {
     ssl_support_method       = "sni-only"
     minimum_protocol_version = "TLSv1.2_2021"
   }
+
+  tags = var.tags
 }
 
 resource "aws_wafv2_web_acl" "waf" {
@@ -209,4 +211,6 @@ resource "aws_wafv2_web_acl" "waf" {
     metric_name                = "${local.prefix}-waf"
     sampled_requests_enabled   = true
   }
+
+  tags = var.tags
 }

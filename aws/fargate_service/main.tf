@@ -12,6 +12,8 @@ module "ecr" {
       untagged_image_retention : var.untagged_image_retention
     }
   )))
+
+  tags = var.tags
 }
 
 # If this is a public load balancer, we need to allow all traffic.
@@ -34,6 +36,8 @@ module "endpoint_security_group" {
   egress_cidr_blocks      = [data.aws_vpc.current.cidr_block]
   egress_rules            = ["all-all"]
   egress_ipv6_cidr_blocks = []
+
+  tags = var.tags
 }
 
 # TODO: Determine how we can best restrict the egress rules.
@@ -57,6 +61,8 @@ module "task_security_group" {
   egress_cidr_blocks      = ["0.0.0.0/0"]
   egress_ipv6_cidr_blocks = ["::/0"]
   egress_rules            = ["all-all"]
+
+  tags = var.tags
 }
 
 module "ecs" {
@@ -66,6 +72,8 @@ module "ecs" {
   name                      = local.prefix
   capacity_providers        = ["FARGATE"]
   enable_container_insights = true
+
+  tags = var.tags
 }
 
 module "ecs_service" {
@@ -110,4 +118,6 @@ module "ecs_service" {
       }
     }
   )))
+
+  tags = var.tags
 }

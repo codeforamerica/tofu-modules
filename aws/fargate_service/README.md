@@ -74,6 +74,7 @@ tofu init -upgrade
 | public                    | Whether the service should be exposed to the public Internet.                         | `bool`        | `false`    | no       |
 | [secrets_manager_secrets] | Map of secrets to be created in Secrets Manager.                                      | `map(object)` | `{}`       | no       |
 | subdomain                 | Optional subdomain for the service, to be appended to the domain for DNS.             | `string`      | `""`       | no       |
+| tags                      | Optional tags to be applied to all resources.                                         | `list`        | `[]`       | no       |
 | untagged_image_retention  | Retention period (after push) for untagged images, in days.                           | `number`      | `14`       | no       |
 
 ### secrets_manager_secrets
