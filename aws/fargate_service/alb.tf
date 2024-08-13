@@ -78,8 +78,6 @@ resource "aws_route53_record" "endpoint" {
     zone_id                = module.alb.zone_id
     evaluate_target_health = true
   }
-
-  tags = var.tags
 }
 
 resource "aws_route53_record" "endpoint_validation" {
@@ -97,8 +95,6 @@ resource "aws_route53_record" "endpoint_validation" {
   ttl             = 60
   type            = each.value.type
   zone_id         = data.aws_route53_zone.domain.zone_id
-
-  tags = var.tags
 }
 
 resource "aws_acm_certificate_validation" "endpoint" {
