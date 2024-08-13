@@ -14,6 +14,4 @@ resource "aws_kms_key" "secrets" {
 resource "aws_kms_alias" "secrets" {
   name          = "alias/${var.project}/${var.environment}/${var.service != "" ? "${var.service}/" : ""}secrets"
   target_key_id = aws_kms_key.secrets.id
-
-  tags = var.tags
 }

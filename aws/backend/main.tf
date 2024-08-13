@@ -23,8 +23,6 @@ resource "aws_kms_key" "backend" {
 resource "aws_kms_alias" "backend" {
   name          = "alias/${var.project}/${var.environment}/backend"
   target_key_id = aws_kms_key.backend.id
-
-  tags = var.tags
 }
 
 resource "aws_dynamodb_table" "tfstate_lock" {

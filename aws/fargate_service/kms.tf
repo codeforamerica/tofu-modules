@@ -15,6 +15,4 @@ resource "aws_kms_key" "fargate" {
 resource "aws_kms_alias" "fargate" {
   name          = "alias/${var.project}/${var.environment}/${var.service}"
   target_key_id = aws_kms_key.fargate.id
-
-  tags = var.tags
 }

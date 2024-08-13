@@ -80,6 +80,4 @@ resource "aws_kms_key" "logs" {
 resource "aws_kms_alias" "logs" {
   name          = "alias/${var.project}/${var.environment}/logs"
   target_key_id = aws_kms_key.logs.id
-
-  tags = var.tags
 }
