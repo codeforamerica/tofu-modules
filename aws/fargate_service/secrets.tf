@@ -12,6 +12,8 @@ module "secrets_manager" {
   secret_string           = each.value.start_value
 
   ignore_secret_changes = true
+
+  tags = var.tags
 }
 
 module "otel_config" {
@@ -24,4 +26,6 @@ module "otel_config" {
   value = templatefile("${path.module}/templates/aws-otel-config.yaml.tftpl", {
     app_namespace = "${var.project}/${var.service}"
   })
+
+  tags = var.tags
 }
