@@ -22,8 +22,6 @@ resource "aws_cloudfront_cache_policy" "waf_passthrough" {
       query_string_behavior = "all"
     }
   }
-
-  tags = var.tags
 }
 
 resource "aws_cloudfront_distribution" "waf" {
