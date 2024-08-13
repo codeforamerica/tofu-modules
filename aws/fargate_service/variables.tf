@@ -138,7 +138,7 @@ variable "subdomain" {
 variable "tags" {
   type        = map(string)
   description = "Tags to apply to all resources."
-  default = {}
+  default     = {}
 }
 
 variable "untagged_image_retention" {
