@@ -7,9 +7,13 @@ resource "aws_kms_key" "secrets" {
     partition : data.aws_partition.current.partition,
     region : data.aws_region.current.name,
   })))
+
+  tags = var.tags
 }
 
 resource "aws_kms_alias" "secrets" {
   name          = "alias/${var.project}/${var.environment}/${var.service != "" ? "${var.service}/" : ""}secrets"
   target_key_id = aws_kms_key.secrets.id
+
+  tags = var.tags
 }
