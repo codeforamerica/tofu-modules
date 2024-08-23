@@ -2,6 +2,8 @@ module "ecr" {
   source  = "terraform-aws-modules/ecr/aws"
   version = "~> 2.2"
 
+  for_each = var.create_repository ? toset(["this"]) : toset([])
+
   repository_name                 = local.prefix
   repository_image_scan_on_push   = true
   repository_encryption_type      = "KMS"
@@ -89,7 +91,7 @@ module "ecs_service" {
   memory                 = 1024
   desired_count          = 1
   vpc_subnets            = var.private_subnets
-  target_group_arn       = module.alb.target_groups["endpoint"].arn
+  target_group_arn       = var.create_endpoint ? module.alb.target_groups["endpoint"].arn : null
   security_groups        = [module.task_security_group.security_group_id]
   iam_daemon_role        = aws_iam_role.execution.arn
   iam_task_role          = aws_iam_role.task.arn
@@ -100,7 +102,7 @@ module "ecs_service" {
       name           = local.prefix
       cpu            = 256
       memory         = 512
-      image          = "${module.ecr.repository_url}:${var.image_tag}"
+      image          = "${local.image_uri}:${var.image_tag}"
       container_port = var.container_port
       log_group      = aws_cloudwatch_log_group.service.name
       region         = data.aws_region.current.name
@@ -113,8 +115,8 @@ module "ecs_service" {
       env_secrets = {
         for key, value in var.environment_secrets :
         key => split(":", value)[0] == "arn"
-        ? "${join(":", slice(split(":", value), 0, length(split(":", value)) - 1))}:${split(":", value)[length(split(":", value)) - 1]}::"
-        : "${module.secrets_manager[split(":", value)[0]].secret_arn}:${split(":", value)[1]}::"
+          ? "${join(":", slice(split(":", value), 0, length(split(":", value)) - 1))}:${split(":", value)[length(split(":", value)) - 1]}::"
+          : "${module.secrets_manager[split(":", value)[0]].secret_arn}:${split(":", value)[1]}::"
       }
     }
   )))

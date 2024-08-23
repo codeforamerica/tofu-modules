@@ -10,9 +10,16 @@ variable "create_endpoint" {
   default     = true
 }
 
+variable "create_repository" {
+  type = bool
+  description = "Create an ECR repository for the service."
+  default = true
+}
+
 variable "domain" {
   type        = string
-  description = "Domain name for the service."
+  description = "Domain name for the service. Required if creating an endpoint."
+  default = ""
 }
 
 variable "enable_execute_command" {
@@ -43,6 +50,12 @@ variable "force_delete" {
   type        = bool
   description = "Force deletion of resources. If changing to true, be sure to apply before destroying."
   default     = false
+}
+
+variable "image_source" {
+  type        = string
+  description = "Source for the image to be deployed. Required if not creating a repository."
+  default     = ""
 }
 
 # TODO: Support external images?
@@ -109,7 +122,8 @@ variable "project_short" {
 
 variable "public_subnets" {
   type        = list(string)
-  description = "List of public subnets."
+  description = "List of public subnets. Required when creating a public endpoint."
+  default = []
 }
 
 # TODO: Support rotation.
