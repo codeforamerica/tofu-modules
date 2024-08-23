@@ -103,6 +103,7 @@ module "ecs_service" {
       cpu            = 256
       memory         = 512
       image          = "${local.image_url}:${var.image_tag}"
+      container_command = var.container_command
       container_port = var.container_port
       log_group      = aws_cloudwatch_log_group.service.name
       region         = data.aws_region.current.name

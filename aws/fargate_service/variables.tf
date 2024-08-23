@@ -1,3 +1,9 @@
+variable "container_command" {
+  type        = string
+  description = "Command to run in the container. Defaults to the image's CMD."
+  default     = ""
+}
+
 variable "container_port" {
   type        = number
   description = "Port that the container listens on."
