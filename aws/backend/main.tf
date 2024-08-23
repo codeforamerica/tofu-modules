@@ -26,7 +26,7 @@ resource "aws_kms_alias" "backend" {
 }
 
 resource "aws_dynamodb_table" "tfstate_lock" {
-  name           = "tfstate"
+  name           = "${var.environment}.tfstate"
   read_capacity  = 1
   write_capacity = 1
   hash_key       = "LockID"
