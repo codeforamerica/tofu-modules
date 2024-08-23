@@ -5,6 +5,7 @@ Statement:
   Action:
   - ecr:GetAuthorizationToken
   Resource: "*"
+%{ if ecr_arn != "" ~}
 - Sid: ECRRepositoryAccess
   Effect: Allow
   Action:
@@ -12,6 +13,7 @@ Statement:
   - ecr:GetDownloadUrlForLayer
   - ecr:BatchGetImage
   Resource: "${ecr_arn}"
+%{ endif ~}
 - Sid: LogWrite
   Effect: Allow
   Action:
