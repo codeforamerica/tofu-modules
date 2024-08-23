@@ -1,9 +1,11 @@
 module "alb" {
   source                     = "terraform-aws-modules/alb/aws"
   version                    = "~> 9.9"
-  enable_deletion_protection = !var.force_delete
+
+  for_each = var.create_endpoint ? ["this"] : []
 
   name               = local.prefix_short
+  enable_deletion_protection = !var.force_delete
   load_balancer_type = "application"
   security_groups    = [module.endpoint_security_group.security_group_id]
   subnets            = var.public ? var.public_subnets : var.private_subnets
@@ -58,6 +60,8 @@ module "alb" {
 }
 
 resource "aws_acm_certificate" "endpoint" {
+  for_each = var.create_endpoint ? ["this"] : []
+
   domain_name       = local.fqdn
   validation_method = "DNS"
 
@@ -69,6 +73,8 @@ resource "aws_acm_certificate" "endpoint" {
 }
 
 resource "aws_route53_record" "endpoint" {
+  for_each = var.create_endpoint ? ["this"] : []
+
   name    = local.fqdn
   type    = "A"
   zone_id = data.aws_route53_zone.domain.zone_id
@@ -81,13 +87,13 @@ resource "aws_route53_record" "endpoint" {
 }
 
 resource "aws_route53_record" "endpoint_validation" {
-  for_each = {
+  for_each = var.create_endpoint ? {
     for dvo in aws_acm_certificate.endpoint.domain_validation_options : dvo.domain_name => {
       name   = dvo.resource_record_name
       record = dvo.resource_record_value
       type   = dvo.resource_record_type
     }
-  }
+  } : []
 
   allow_overwrite = true
   name            = each.value.name
@@ -98,6 +104,8 @@ resource "aws_route53_record" "endpoint_validation" {
 }
 
 resource "aws_acm_certificate_validation" "endpoint" {
+  for_each = var.create_endpoint ? ["this"] : []
+
   certificate_arn = aws_acm_certificate.endpoint.arn
   validation_record_fqdns = [
     for record in aws_route53_record.endpoint_validation : record.fqdn

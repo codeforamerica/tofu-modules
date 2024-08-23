@@ -4,6 +4,12 @@ variable "container_port" {
   default     = 80
 }
 
+variable "create_endpoint" {
+  type        = bool
+  description = "Create an Application Load Balancer for the service."
+  default     = true
+}
+
 variable "domain" {
   type        = string
   description = "Domain name for the service."
