@@ -1,12 +1,31 @@
+variable "container_command" {
+  type        = list(string)
+  description = "Command to run in the container. Defaults to the image's CMD."
+  default     = []
+}
+
 variable "container_port" {
   type        = number
   description = "Port that the container listens on."
   default     = 80
 }
 
+variable "create_endpoint" {
+  type        = bool
+  description = "Create an Application Load Balancer for the service."
+  default     = true
+}
+
+variable "create_repository" {
+  type        = bool
+  description = "Create an ECR repository for the service."
+  default     = true
+}
+
 variable "domain" {
   type        = string
-  description = "Domain name for the service."
+  description = "Domain name for the service. Required if creating an endpoint."
+  default     = ""
 }
 
 variable "enable_execute_command" {
@@ -39,11 +58,16 @@ variable "force_delete" {
   default     = false
 }
 
-# TODO: Support external images?
 variable "image_tag" {
   type        = string
   description = "Tag for the image to be deployed."
   default     = "latest"
+}
+
+variable "image_url" {
+  type        = string
+  description = "Source for the image to be deployed. Required if not creating a repository."
+  default     = ""
 }
 
 variable "image_tags_mutable" {
@@ -103,7 +127,14 @@ variable "project_short" {
 
 variable "public_subnets" {
   type        = list(string)
-  description = "List of public subnets."
+  description = "List of public subnets. Required when creating a public endpoint."
+  default     = []
+}
+
+variable "repository_arn" {
+  type        = string
+  description = "ARN of the ECR repository the image resides in. Only required if using a private repository, but not creating it here."
+  default     = null
 }
 
 # TODO: Support rotation.
