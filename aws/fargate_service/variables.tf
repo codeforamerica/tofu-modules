@@ -1,7 +1,7 @@
 variable "container_command" {
-  type        = string
+  type        = list(string)
   description = "Command to run in the container. Defaults to the image's CMD."
-  default     = ""
+  default     = []
 }
 
 variable "container_port" {

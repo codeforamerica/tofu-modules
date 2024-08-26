@@ -12,10 +12,10 @@
       awslogs-stream-prefix: "ecs"
   linuxParameters:
     initProcessEnabled: true
-  %{~ if container_command ~}
-  command: ${container_command}
+  %{~ if length(container_command) > 0 ~}
+  command: ["%{join("\", \"", container_command)}"]
   %{~ endif ~}
-  %{~ if container_port ~}
+  %{~ if container_port != "" ~}
   portMappings:
     - containerPort: ${container_port}
   %{~ endif ~}
