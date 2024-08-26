@@ -1,16 +1,16 @@
 module "alb" {
-  source                     = "terraform-aws-modules/alb/aws"
-  version                    = "~> 9.9"
+  source  = "terraform-aws-modules/alb/aws"
+  version = "~> 9.9"
 
   for_each = var.create_endpoint ? toset(["this"]) : toset([])
 
-  name               = local.prefix_short
+  name                       = local.prefix_short
   enable_deletion_protection = !var.force_delete
-  load_balancer_type = "application"
-  security_groups    = [module.endpoint_security_group.security_group_id]
-  subnets            = var.public ? var.public_subnets : var.private_subnets
-  vpc_id             = var.vpc_id
-  internal           = !var.public
+  load_balancer_type         = "application"
+  security_groups            = [module.endpoint_security_group.security_group_id]
+  subnets                    = var.public ? var.public_subnets : var.private_subnets
+  vpc_id                     = var.vpc_id
+  internal                   = !var.public
 
   # TODO: Support IPv6 and/or dualstack.
   ip_address_type = "ipv4"

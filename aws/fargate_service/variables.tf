@@ -17,15 +17,15 @@ variable "create_endpoint" {
 }
 
 variable "create_repository" {
-  type = bool
+  type        = bool
   description = "Create an ECR repository for the service."
-  default = true
+  default     = true
 }
 
 variable "domain" {
   type        = string
   description = "Domain name for the service. Required if creating an endpoint."
-  default = ""
+  default     = ""
 }
 
 variable "enable_execute_command" {
@@ -128,13 +128,13 @@ variable "project_short" {
 variable "public_subnets" {
   type        = list(string)
   description = "List of public subnets. Required when creating a public endpoint."
-  default = []
+  default     = []
 }
 
 variable "repository_arn" {
-  type = string
+  type        = string
   description = "ARN of the ECR repository the image resides in. Only required if using a private repository, but not creating it here."
-  default = null
+  default     = null
 }
 
 # TODO: Support rotation.
