@@ -91,7 +91,7 @@ module "ecs_service" {
   memory                 = 1024
   desired_count          = 1
   vpc_subnets            = var.private_subnets
-  target_group_arn       = var.create_endpoint ? module.alb.target_groups["endpoint"].arn : null
+  target_group_arn       = var.create_endpoint ? module.alb["this"].target_groups["endpoint"].arn : null
   security_groups        = [module.task_security_group.security_group_id]
   iam_daemon_role        = aws_iam_role.execution.arn
   iam_task_role          = aws_iam_role.task.arn
