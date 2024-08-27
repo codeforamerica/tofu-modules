@@ -163,7 +163,7 @@ variable "service_short" {
 variable "stats_prefix" {
   type        = string
   description = "Prefix for statsd metrics. Defaults to `project`/`service`."
-  value       = ""
+  default     = ""
 }
 
 variable "subdomain" {
