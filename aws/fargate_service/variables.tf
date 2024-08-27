@@ -160,6 +160,12 @@ variable "service_short" {
   description = "Short name for the service. Used in resource names with character limits."
 }
 
+variable "stats_prefix" {
+  type        = string
+  description = "Prefix for statsd metrics. Defaults to `project`/`service`."
+  default     = ""
+}
+
 variable "subdomain" {
   type        = string
   description = "Optional subdomain for the service."

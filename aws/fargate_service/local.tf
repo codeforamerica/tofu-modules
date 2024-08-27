@@ -4,6 +4,7 @@ locals {
   prefix         = "${var.project}-${var.environment}-${var.service}"
   prefix_short   = "${var.project_short}-${var.environment}-${var.service_short}"
   repository_arn = var.create_repository ? module.ecr["this"].repository_arn : var.repository_arn
+  stats_prefix   = var.stats_prefix != "" ? var.stats_prefix : "${var.project}/${var.service}"
 
   authorized_secrets = [
     for key, value in var.environment_secrets :
