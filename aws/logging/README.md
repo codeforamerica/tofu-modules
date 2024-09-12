@@ -41,9 +41,34 @@ tofu init -upgrade
 | cloudwatch_log_retention | Number of days to retain logs in CloudWatch.                                            | `number`       | `30`    | no       |
 | environment              | Environment for the project.                                                            | `string`       | `"dev"` | no       |
 | key_recovery_period      | Number of days to recover the KMS key after deletion.                                   | `number`       | `30`    | yes      |
-| log_groups               | List of CloudWatch log groups to create.                                                | `list(string)` | `[]`    | no       |
+| [log_groups]             | List of CloudWatch log groups to create.                                                | `list(string)` | `[]`    | no       |
 | log_groups_to_datadog    | Send CloudWatch logs to Datadog. The Datadog forwarder must have already been deployed. | `bool`         | `true`  | no       |
 | tags                     | Optional tags to be applied to all resources.                                           | `list`         | `[]`    | no       |
+
+### log_groups
+
+You can specify a list of CloudWatch log groups to create, with customized
+options for each log group. If no `retention` is specified, the value provided
+to `cloudwatch_log_retention` will be used.
+
+```hcl
+log_groups = {
+    "/sample/log/group" = {},
+    "waf" = {
+      name = "aws-waf-logs-cfa/waf/demo"
+      tags = { source = "waf" }
+    }
+  }
+```
+
+The following options are available for each log group:
+
+| Name      | Description                                                                      | Type          | Default                        | Required |
+|-----------|----------------------------------------------------------------------------------|---------------|--------------------------------|----------|
+| class     | Storage class for the log group. Options are `STANDARD` and `INFREQUENT_ACCESS`. | `string`      | `"STANDARD"`                   | no       |
+| name      | Name of the log group. Defaults to the key from the map.                         | `string`      | `each.key`                     | no       |
+| retention | Retention period for logs.                                                       | `string`      | `var.cloudwatch_log_retention` | no       |
+| tags      | Map of tags to add to the log group. Will be merged with `tags`.                 | `map(stirng)` | `{}`                           | no       |
 
 ## Outputs
 
@@ -56,4 +81,5 @@ tofu init -upgrade
 | kms_key_arn        | ARN of the KMS encryption key.                  | `string`      |
 | log_groups         | Map of log group names and ARNs.                | `map(string)` |
 
+[log_groups]: #log_groups
 [not supported]: https://repost.aws/knowledge-center/s3-server-access-log-not-delivered
