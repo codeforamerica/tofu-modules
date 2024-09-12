@@ -73,3 +73,13 @@ resource "aws_kms_alias" "logs" {
   name          = "alias/${var.project}/${var.environment}/logs"
   target_key_id = aws_kms_key.logs.id
 }
+
+resource "aws_cloudwatch_log_group" "logs" {
+  for_each = toset(var.log_groups)
+
+  name = each.value
+  retention_in_days = var.cloudwatch_log_retention
+  kms_key_id = aws_kms_key.logs.arn
+
+  tags = var.tags
+}

@@ -44,10 +44,12 @@ tofu init -upgrade
 
 ## Outputs
 
-| Name          | Description                        | Type     |
-|---------------|------------------------------------|----------|
-| bucket        | Name of the S3 bucket for logging. | `string` |
-| kms_key_alias | Alias of the KMS encryption key.   | `string` |
-| kms_key_arn   | ARN of the KMS encryption key.     | `string` |
+| Name               | Description                        | Type          |
+|--------------------|------------------------------------|---------------|
+| bucket             | Name of the S3 bucket for logging. | `string`      |
+| bucket_domain_name | FQDN of the bucket.                | `string`      |
+| kms_key_alias      | Alias of the KMS encryption key.   | `string`      |
+| kms_key_arn        | ARN of the KMS encryption key.     | `string`      |
+| log_groups         | Map of log group names and ARNs.   | `map(string)` |
 
 [not supported]: https://repost.aws/knowledge-center/s3-server-access-log-not-delivered

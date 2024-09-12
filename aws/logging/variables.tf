@@ -1,3 +1,9 @@
+variable "cloudwatch_log_retention" {
+  type        = number
+  description = "Number of days to retain logs in CloudWatch."
+  default     = 30
+}
+
 variable "environment" {
   type        = string
   description = "Environment for the deployment."
@@ -13,6 +19,12 @@ variable "key_recovery_period" {
     condition     = var.key_recovery_period > 6 && var.key_recovery_period < 31
     error_message = "Recovery period must be between 7 and 30."
   }
+}
+
+variable "log_groups" {
+  type        = list(string)
+  description = "List of CloudWatch log groups to create."
+  default      = []
 }
 
 variable "project" {
