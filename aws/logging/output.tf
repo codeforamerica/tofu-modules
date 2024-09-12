@@ -17,3 +17,7 @@ output "kms_key_alias" {
 output "log_groups" {
   value = { for group in aws_cloudwatch_log_group.logs : group.name => group.arn }
 }
+
+output "datadog_lambda" {
+  value = length(local.datadog_lambda) > 0 ? local.datadog_lambda[0] : ""
+}

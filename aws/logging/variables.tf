@@ -27,6 +27,12 @@ variable "log_groups" {
   default      = []
 }
 
+variable "log_groups_to_datadog" {
+  type        = bool
+  description = "Send CloudWatch logs to Datadog. The Datadog forwarder must have already been deployed."
+  default     = true
+}
+
 variable "project" {
   type        = string
   description = "Project that these resources are supporting."

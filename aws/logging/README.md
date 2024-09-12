@@ -35,23 +35,25 @@ tofu init -upgrade
 
 ## Inputs
 
-| Name                     | Description                                           | Type           | Default | Required |
-|--------------------------|-------------------------------------------------------|----------------|---------|----------|
-| project                  | Name of the project.                                  | `string`       | n/a     | yes      |
-| cloudwatch_log_retention | Number of days to retain logs in CloudWatch.          | `number`       | `30`    | no       |
-| environment              | Environment for the project.                          | `string`       | `"dev"` | no       |
-| key_recovery_period      | Number of days to recover the KMS key after deletion. | `number`       | `30`    | yes      |
-| log_groups               | List of CloudWatch log groups to create.              | `list(string)` | `[]`    | no       |
-| tags                     | Optional tags to be applied to all resources.         | `list`         | `[]`    | no       |
+| Name                     | Description                                                                             | Type           | Default | Required |
+|--------------------------|-----------------------------------------------------------------------------------------|----------------|---------|----------|
+| project                  | Name of the project.                                                                    | `string`       | n/a     | yes      |
+| cloudwatch_log_retention | Number of days to retain logs in CloudWatch.                                            | `number`       | `30`    | no       |
+| environment              | Environment for the project.                                                            | `string`       | `"dev"` | no       |
+| key_recovery_period      | Number of days to recover the KMS key after deletion.                                   | `number`       | `30`    | yes      |
+| log_groups               | List of CloudWatch log groups to create.                                                | `list(string)` | `[]`    | no       |
+| log_groups_to_datadog    | Send CloudWatch logs to Datadog. The Datadog forwarder must have already been deployed. | `bool`         | `true`  | no       |
+| tags                     | Optional tags to be applied to all resources.                                           | `list`         | `[]`    | no       |
 
 ## Outputs
 
-| Name               | Description                        | Type          |
-|--------------------|------------------------------------|---------------|
-| bucket             | Name of the S3 bucket for logging. | `string`      |
-| bucket_domain_name | FQDN of the bucket.                | `string`      |
-| kms_key_alias      | Alias of the KMS encryption key.   | `string`      |
-| kms_key_arn        | ARN of the KMS encryption key.     | `string`      |
-| log_groups         | Map of log group names and ARNs.   | `map(string)` |
+| Name               | Description                                     | Type          |
+|--------------------|-------------------------------------------------|---------------|
+| bucket             | Name of the S3 bucket for logging.              | `string`      |
+| bucket_domain_name | FQDN of the bucket.                             | `string`      |
+| datadog_lambda     | ARN of the Datadog lambda forwarder, if in use. | `string`      |
+| kms_key_alias      | Alias of the KMS encryption key.                | `string`      |
+| kms_key_arn        | ARN of the KMS encryption key.                  | `string`      |
+| log_groups         | Map of log group names and ARNs.                | `map(string)` |
 
 [not supported]: https://repost.aws/knowledge-center/s3-server-access-log-not-delivered
