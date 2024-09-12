@@ -14,6 +14,11 @@ variable "log_bucket" {
   description = "S3 Bucket to send logs to."
 }
 
+variable "log_group" {
+  type        = string
+  description = "CloudWatch log group to send WAF logs to."
+}
+
 variable "origin_domain" {
   type        = string
   description = "Origin domain this deployment will point to. Defaults to origin.subdomain.domain."

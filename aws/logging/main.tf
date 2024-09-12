@@ -73,3 +73,22 @@ resource "aws_kms_alias" "logs" {
   name          = "alias/${var.project}/${var.environment}/logs"
   target_key_id = aws_kms_key.logs.id
 }
+
+resource "aws_cloudwatch_log_group" "logs" {
+  for_each = var.log_groups
+
+  name              = each.value.name != "" ? each.value.name : each.key
+  retention_in_days = each.value.retention != null ? each.value.retention : var.cloudwatch_log_retention
+  kms_key_id        = aws_kms_key.logs.arn
+
+  tags = merge(var.tags, each.value.tags)
+}
+
+resource "aws_cloudwatch_log_subscription_filter" "datadog" {
+  for_each = length(local.datadog_lambda) > 0 ? resource.aws_cloudwatch_log_group.logs : {}
+
+  name            = "datadog"
+  log_group_name  = each.value.name
+  filter_pattern  = ""
+  destination_arn = data.aws_lambda_function.datadog["this"].arn
+}
