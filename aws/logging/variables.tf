@@ -23,13 +23,13 @@ variable "key_recovery_period" {
 
 variable "log_groups" {
   type = map(object({
-    name = optional(string, "")
-    class            = optional(string, "STANDARD")
-    retention       = optional(number, null)
-    tags            = optional(map(string), {})
+    name      = optional(string, "")
+    class     = optional(string, "STANDARD")
+    retention = optional(number, null)
+    tags      = optional(map(string), {})
   }))
   description = "List of CloudWatch log groups to create."
-  default      = {}
+  default     = {}
 }
 
 variable "log_groups_to_datadog" {

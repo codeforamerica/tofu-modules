@@ -15,7 +15,7 @@ variable "log_bucket" {
 }
 
 variable "log_group" {
-  type = string
+  type        = string
   description = "CloudWatch log group to send WAF logs to."
 }
 

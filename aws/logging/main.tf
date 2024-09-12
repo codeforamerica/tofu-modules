@@ -77,9 +77,9 @@ resource "aws_kms_alias" "logs" {
 resource "aws_cloudwatch_log_group" "logs" {
   for_each = var.log_groups
 
-  name = each.value.name != "" ? each.value.name : each.key
+  name              = each.value.name != "" ? each.value.name : each.key
   retention_in_days = each.value.retention != null ? each.value.retention : var.cloudwatch_log_retention
-  kms_key_id = aws_kms_key.logs.arn
+  kms_key_id        = aws_kms_key.logs.arn
 
   tags = merge(var.tags, each.value.tags)
 }
