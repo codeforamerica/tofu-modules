@@ -35,12 +35,14 @@ tofu init -upgrade
 
 ## Inputs
 
-| Name                | Description                                           | Type     | Default | Required |
-|---------------------|-------------------------------------------------------|----------|---------|----------|
-| project             | Name of the project.                                  | `string` | n/a     | yes      |
-| environment         | Environment for the project.                          | `string` | `"dev"` | no       |
-| key_recovery_period | Number of days to recover the KMS key after deletion. | `number` | `30`    | yes      |
-| tags                | Optional tags to be applied to all resources.         | `list`   | `[]`    | no       |
+| Name                     | Description                                           | Type           | Default | Required |
+|--------------------------|-------------------------------------------------------|----------------|---------|----------|
+| project                  | Name of the project.                                  | `string`       | n/a     | yes      |
+| cloudwatch_log_retention | Number of days to retain logs in CloudWatch.          | `number`       | `30`    | no       |
+| environment              | Environment for the project.                          | `string`       | `"dev"` | no       |
+| key_recovery_period      | Number of days to recover the KMS key after deletion. | `number`       | `30`    | yes      |
+| log_groups               | List of CloudWatch log groups to create.              | `list(string)` | `[]`    | no       |
+| tags                     | Optional tags to be applied to all resources.         | `list`         | `[]`    | no       |
 
 ## Outputs
 

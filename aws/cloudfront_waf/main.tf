@@ -214,3 +214,8 @@ resource "aws_wafv2_web_acl" "waf" {
 
   tags = var.tags
 }
+
+resource "aws_wafv2_web_acl_logging_configuration" "waf" {
+  log_destination_configs = [var.log_group]
+  resource_arn            = aws_wafv2_web_acl.waf.arn
+}
