@@ -116,7 +116,7 @@ variable "project" {
 
 variable "public" {
   type        = bool
-  description = "This is an internal service that should not be exposed to the public Internet."
+  description = "Whether the service should be exposed to the public Internet."
   default     = false
 }
 
