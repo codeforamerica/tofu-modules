@@ -1,3 +1,9 @@
+variable "allowed_cidrs" {
+  type        = list(string)
+  description = "List of CIDR blocks to allow traffic from."
+  default = []
+}
+
 variable "aptible_environment" {
   type        = string
   description = "Name of the Aptible environment for the endpoint."
