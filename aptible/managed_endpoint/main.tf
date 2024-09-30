@@ -1,9 +1,9 @@
 resource "aptible_endpoint" "endpoint" {
-  env_id        = data.aptible_environment.environment.env_id
-  resource_id   = var.aptible_resource
-  internal      = !var.public
-  domain        = local.fqdn
-  managed       = true
+  env_id       = data.aptible_environment.environment.env_id
+  resource_id  = var.aptible_resource
+  internal     = !var.public
+  domain       = local.fqdn
+  managed      = true
   ip_filtering = var.allowed_cidrs
 
   # TODO: Should these be configurable? Probably.

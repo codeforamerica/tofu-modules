@@ -1,7 +1,7 @@
 variable "allowed_cidrs" {
   type        = list(string)
   description = "List of CIDR blocks to allow traffic from."
-  default = []
+  default     = []
 }
 
 variable "aptible_environment" {
@@ -10,8 +10,13 @@ variable "aptible_environment" {
 }
 
 variable "aptible_resource" {
-  type        = string
+  type        = number
   description = "ID of the resource to attach the endpoint to."
+}
+
+variable "domain" {
+  type        = string
+  description = "Top-level domain name for the endpoint. This will be used to find the Route53 zone."
 }
 
 variable "public" {
@@ -20,11 +25,7 @@ variable "public" {
   default     = false
 }
 
-variable "domain" {
-  type = string
-  description = "Top-level domain name for the endpoint. This will be used to find the Route53 zone."
-}
 variable "subdomain" {
-  type = string
+  type        = string
   description = "Subdomain for the endpoint. This will be prepended to the domain."
 }
