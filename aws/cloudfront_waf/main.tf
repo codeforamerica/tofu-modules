@@ -83,7 +83,7 @@ resource "aws_cloudfront_distribution" "waf" {
     minimum_protocol_version = "TLSv1.2_2021"
   }
 
-  tags = var.tags
+  tags = local.tags
 }
 
 resource "aws_wafv2_web_acl" "waf" {
@@ -212,7 +212,7 @@ resource "aws_wafv2_web_acl" "waf" {
     sampled_requests_enabled   = true
   }
 
-  tags = var.tags
+  tags = local.tags
 }
 
 resource "aws_wafv2_web_acl_logging_configuration" "waf" {
