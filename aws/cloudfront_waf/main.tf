@@ -95,6 +95,7 @@ resource "aws_wafv2_web_acl" "waf" {
     allow {}
   }
 
+  # For each IP set rule, create a rule with the appropriate action.
   dynamic "rule" {
     for_each = var.ip_set_rules
     content {
