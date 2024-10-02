@@ -72,8 +72,8 @@ resource "aws_cloudfront_distribution" "waf" {
 
   restrictions {
     geo_restriction {
-      restriction_type = "whitelist"
-      locations        = ["US", "CA", "GB", "DE"]
+      restriction_type = "none"
+      locations        = []
     }
   }
 
@@ -95,9 +95,47 @@ resource "aws_wafv2_web_acl" "waf" {
     allow {}
   }
 
+  # For each IP set rule, create a rule with the appropriate action.
+  dynamic "rule" {
+    for_each = var.ip_set_rules
+    content {
+      name     = rule.value.name != "" ? rule.value.name : "${local.prefix}-${rule.key}"
+      priority = rule.value.priority != null ? rule.value.priority : index(var.ip_set_rules, rule.key)
+
+      action {
+        dynamic "allow" {
+          for_each = rule.value.action == "allow" ? [true] : []
+          content {}
+        }
+
+        dynamic "block" {
+          for_each = rule.value.action == "block" ? [true] : []
+          content {}
+        }
+
+        dynamic "block" {
+          for_each = rule.value.action == "count" ? [true] : []
+          content {}
+        }
+      }
+
+      statement {
+        ip_set_reference_statement {
+          arn = rule.value.arn
+        }
+      }
+
+      visibility_config {
+        cloudwatch_metrics_enabled = true
+        metric_name                = "${local.prefix}-${rule.key}"
+        sampled_requests_enabled   = true
+      }
+    }
+  }
+
   rule {
     name     = "AWS-RateBasedRule-IP-300"
-    priority = 0
+    priority = 100
 
     action {
       count {}
@@ -120,7 +158,7 @@ resource "aws_wafv2_web_acl" "waf" {
 
   rule {
     name     = "AWS-AWSManagedRulesAmazonIpReputationList"
-    priority = 1
+    priority = 200
 
     override_action {
       none {}
@@ -142,7 +180,7 @@ resource "aws_wafv2_web_acl" "waf" {
 
   rule {
     name     = "AWS-AWSManagedRulesCommonRuleSet"
-    priority = 2
+    priority = 300
 
     override_action {
       none {}
@@ -164,7 +202,7 @@ resource "aws_wafv2_web_acl" "waf" {
 
   rule {
     name     = "AWS-AWSManagedRulesKnownBadInputsRuleSet"
-    priority = 3
+    priority = 400
 
     override_action {
       none {}
@@ -186,7 +224,7 @@ resource "aws_wafv2_web_acl" "waf" {
 
   rule {
     name     = "AWS-AWSManagedRulesSQLiRuleSet"
-    priority = 4
+    priority = 500
 
     override_action {
       none {}

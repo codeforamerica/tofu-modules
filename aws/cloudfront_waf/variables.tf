@@ -30,6 +30,17 @@ variable "project" {
   description = "Project that these resources are supporting."
 }
 
+variable "ip_set_rules" {
+  type = map(object({
+    name     = optional(string, "")
+    action   = optional(string, "allow")
+    priority = optional(number, null)
+    arn      = string
+  }))
+  description = "Custom WAF rules to apply to the CloudFront distribution."
+  default     = {}
+}
+
 variable "subdomain" {
   type        = string
   description = "Subdomain used for this deployment. Defaults to the environment."
