@@ -33,6 +33,18 @@ To update the source for this module, pass `-upgrade` to `tofu init`:
 tofu init -upgrade
 ```
 
+## Rules
+
+The WAF is configured with the following managed rules groups. The priorities of
+these rules are spaced out to allow for custom rules to be inserted between.
+
+| Rule Group Name                                       | Priority | Description                                           |
+|-------------------------------------------------------|----------|-------------------------------------------------------|
+| [AWSManagedRulesAmazonIpReputationList][rules-ip-rep] | 200      | Protects against IP addresses with a poor reputation. |
+| [AWSManagedRulesCommonRuleSet][rules-common]          | 300      | Protects against common threats.                      |
+| [AWSManagedRulesKnownBadInputsRuleSet][rules-inputs]  | 400      | Protects against known bad inputs.                    |
+| [AWSManagedRulesSQLiRuleSet][rules-sqli]              | 500      | Protects against SQL injection attacks.               |
+
 ## Inputs
 
 | Name           | Description                                                                                         | Type           | Default | Required |
@@ -91,4 +103,8 @@ module "cloudfront_waf" {
 [distribution]: https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/distribution-working-with.html
 [ip-rules]: https://docs.aws.amazon.com/waf/latest/developerguide/waf-rule-statement-type-ipset-match.html
 [ip_set_rules]: #ip_set_rules
+[rules-common]: https://docs.aws.amazon.com/waf/latest/developerguide/aws-managed-rule-groups-baseline.html#aws-managed-rule-groups-baseline-crs
+[rules-inputs]: https://docs.aws.amazon.com/waf/latest/developerguide/aws-managed-rule-groups-baseline.html#aws-managed-rule-groups-baseline-known-bad-inputs
+[rules-ip-rep]: https://docs.aws.amazon.com/waf/latest/developerguide/aws-managed-rule-groups-ip-rep.html#aws-managed-rule-groups-ip-rep-amazon
+[rules-sqli]: https://docs.aws.amazon.com/waf/latest/developerguide/aws-managed-rule-groups-use-case.html#aws-managed-rule-groups-use-case-sql-db
 [wafv2_ip_set]: https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/wafv2_ip_set
