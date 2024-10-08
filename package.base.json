@@ -17,6 +17,9 @@
   },
   "plugins": [
     "@semantic-release/commit-analyzer",
+    {
+      "preset": "atom"
+    },
     "@semantic-release/release-notes-generator",
     "@semantic-release/github"
   ]
