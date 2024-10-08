@@ -1,5 +1,5 @@
----
 commitizen:
   name: cz_conventional_commits
   tag_format: aptible_managed_endpoint-${version}
   version: 0.1.2
+  update_changelog_on_bump: true
