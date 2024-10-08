@@ -62,6 +62,7 @@ jobs:
     steps:
       - name: Checkout source code
         uses: actions/checkout@v4
+      - run: cp ${{ matrix.module }}/.cz.yaml .cz.yaml
       - name: Bump version and create changelog
         uses: commitizen-tools/commitizen-action@master
         with:
