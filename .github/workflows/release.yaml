@@ -30,4 +30,4 @@ jobs:
       - name: Release
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        run: ./scripts/release.sh ${{ github.event.inputs.module_path }}
+        run: ./scripts/release ${{ github.event.inputs.module_path }}
