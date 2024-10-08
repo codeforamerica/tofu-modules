@@ -63,7 +63,7 @@ jobs:
       - name: Checkout source code
         uses: actions/checkout@v4
       - name: Bump version and create changelog
-        uses: commitizen-tools/commitizen-action@0.21
+        uses: commitizen-tools/commitizen-action@master
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           dry_run: true
