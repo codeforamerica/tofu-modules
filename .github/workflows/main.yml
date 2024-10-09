@@ -138,7 +138,9 @@ jobs:
           echo "name=${MODULE_NAME}" >> $GITHUB_OUTPUT
       - run: echo '${{ steps.module_name.outputs.name }}'
       - name: Bundle the module
-        run: tar czf "${{ steps.module_name.outputs.name }}-${{ steps.bump.outputs.version }}.tar.gz" ${{ matrix.module }}
+        run: |
+          cp LICENSE "${{ matrix.module }}/LICENSE"
+          tar czf "${{ steps.module_name.outputs.name }}-${{ steps.bump.outputs.version }}.tar.gz" ${{ matrix.module }}
       - name: Create release
         uses: softprops/action-gh-release@v2
         with:
