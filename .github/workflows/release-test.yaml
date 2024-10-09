@@ -70,13 +70,13 @@ jobs:
           push: true
           github_token: ${{ secrets.GITHUB_TOKEN }}
           changelog_increment_filename: release.md
+          git_redirect_stderr: true
       - name: Get the module name
         id: module_name
         run: |
           MODULE_PATH="${{ matrix.module }}"
           MODULE_NAME="${MODULE_PATH//\//_}"
           echo "name=${MODULE_NAME}" >> $GITHUB_OUTPUT
-      - run: echo '${{ steps.module_name.outputs.name }}'
       - name: Bundle the module
         run: tar czf "${{ steps.module_name.outputs.name }}-${{ steps.bump.outputs.version }}.tar.gz" ${{ matrix.module }}
       - name: Create release
