@@ -9,3 +9,5 @@ and this project adheres to
 ## Unreleased
 
 Initial release of the Aptible Managed Endpoint module.
+
+BUMP
