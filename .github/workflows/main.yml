@@ -7,6 +7,7 @@ on:
 
 jobs:
   find-modules:
+    name: Find updated modules
     runs-on: ubuntu-latest
     steps:
       - name: Checkout source code
@@ -54,6 +55,7 @@ jobs:
       modules: ${{ steps.modified.outputs.modules }}
 
   lint:
+    name: Lint updated modules
     runs-on: ubuntu-latest
     needs: find-modules
     steps:
@@ -93,7 +95,7 @@ jobs:
           exit $exit_code
 
   trivy:
-    name: trivy
+    name: Run security scan
     runs-on: ubuntu-latest
     steps:
       - name: Checkout source code
@@ -104,8 +106,48 @@ jobs:
           scan-type: config
           format: sarif
           output: "trivy-results.sarif"
-
+          version: "v0.55.2"
       - name: Upload SARIF result
         uses: github/codeql-action/upload-sarif@v3
         with:
           sarif_file: "trivy-results.sarif"
+
+  release:
+    name: Release updated modules
+    runs-on: ubuntu-latest
+    needs: find-modules
+    if: ${{ needs.find-modules.outputs.modules != '' && toJson(fromJson(needs.find-modules.outputs.modules)) != '[]' }}
+    strategy:
+      matrix:
+        module: ${{fromJson(needs.find-modules.outputs.modules)}}
+    steps:
+      - name: Checkout source code
+        uses: actions/checkout@v4
+      - run: cp ${{ matrix.module }}/.cz.yaml .cz.yaml
+      - name: Bump version and create changelog
+        id: bump
+        uses: commitizen-tools/commitizen-action@master
+        with:
+          push: true
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          changelog_increment_filename: release.md
+          git_redirect_stderr: true
+      - name: Get the module name
+        id: module_name
+        run: |
+          MODULE_PATH="${{ matrix.module }}"
+          MODULE_NAME="${MODULE_PATH//\//_}"
+          echo "name=${MODULE_NAME}" >> $GITHUB_OUTPUT
+      - run: echo '${{ steps.module_name.outputs.name }}'
+      - name: Bundle the module
+        run: |
+          cp LICENSE "${{ matrix.module }}/LICENSE"
+          tar czf "${{ steps.module_name.outputs.name }}-${{ steps.bump.outputs.version }}.tar.gz" ${{ matrix.module }}
+      - name: Create release
+        uses: softprops/action-gh-release@v2
+        with:
+          body_path: release.md
+          tag_name: ${{ steps.module_name.outputs.name }}-${{ steps.bump.outputs.version }}
+          files: |
+            release.md
+            ${{ steps.module_name.outputs.name }}-${{ steps.bump.outputs.version }}.tar.gz

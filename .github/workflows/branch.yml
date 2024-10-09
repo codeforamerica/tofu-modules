@@ -104,7 +104,7 @@ jobs:
           scan-type: config
           format: sarif
           output: "trivy-results.sarif"
-
+          version: "v0.55.2"
       - name: Parse SARIF file
         if: always()
         uses: Ayrx/sarif_to_github_annotations@v0.2.2
