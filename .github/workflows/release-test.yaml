@@ -69,7 +69,6 @@ jobs:
         with:
           push: true
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          dry_run: true
           changelog_increment_filename: release.md
       - name: Get the module name
         id: module_name
