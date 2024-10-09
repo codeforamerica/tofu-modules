@@ -35,6 +35,7 @@ override.tf.json
 terraform.rc
 
 # Ignore release artifacts
+/*-*.tar.gz
 /.cz.yaml
 /release.md
 /**/*/LICENSE

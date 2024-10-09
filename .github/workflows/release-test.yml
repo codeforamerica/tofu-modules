@@ -91,10 +91,17 @@ jobs:
         with:
           branch: ${{ steps.module_name.outputs.name }}-release-${{ steps.bump.outputs.version }}
           title: ${{ steps.message.outputs.message }}
-#      - name: Approve pull request
-#        uses: hmarr/auto-approve-action@v4
-#        with:
-#          pull-request-number: ${{ steps.pr.outputs.pull-request-number }}
+      - name: Approve pull request
+        uses: hmarr/auto-approve-action@v4
+        with:
+          pull-request-number: ${{ steps.pr.outputs.pull-request-number }}
+      - name: Merge pull request
+        uses: pascalgn/automerge-action@v0.16.4
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          PULL_REQUEST: ${{ steps.pr.outputs.pull-request-number }}
+          MERGE_METHOD: squash
+
 #      - name: Bundle the module
 #        run: |
 #          cp LICENSE "${{ matrix.module }}/LICENSE"
