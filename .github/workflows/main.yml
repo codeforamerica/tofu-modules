@@ -130,6 +130,7 @@ jobs:
           push: true
           github_token: ${{ secrets.GITHUB_TOKEN }}
           changelog_increment_filename: release.md
+          git_redirect_stderr: true
       - name: Get the module name
         id: module_name
         run: |

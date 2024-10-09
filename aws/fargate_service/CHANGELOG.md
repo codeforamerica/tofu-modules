@@ -8,4 +8,4 @@ and this project adheres to
 
 ## Unreleased
 
-Initial release of the AWS Backend module.
+Initial release of the AWS Fargate Service module.
