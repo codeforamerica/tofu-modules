@@ -35,7 +35,6 @@ override.tf.json
 terraform.rc
 
 # Ignore release artifacts
-/**/*/package.json
-/**/*/package-lock.json
-/**/*/node_modules
+/.cz.yaml
+/release.md
 /**/*/LICENSE
