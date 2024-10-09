@@ -64,9 +64,15 @@ jobs:
         uses: actions/checkout@v4
       - run: cp ${{ matrix.module }}/.cz.yaml .cz.yaml
       - name: Bump version and create changelog
+        id: bump
         uses: commitizen-tools/commitizen-action@master
         with:
-          working-directory: ${{ matrix.module }}
+          push: true
           github_token: ${{ secrets.GITHUB_TOKEN }}
           dry_run: true
           changelog_increment_filename: release.md
+      - name: Create release
+        uses: softprops/action-gh-release@v2
+        with:
+          body_path: release.md
+          tag_name: ${{ steps.bump.outputs.version }}
