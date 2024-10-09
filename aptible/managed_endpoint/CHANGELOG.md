@@ -9,5 +9,7 @@ to [Semantic Versioning][semver].
 
 Initial release of the Aptible Managed Endpoint module.
 
+Bump
+
 [changelog]: https://keepachangelog.com/en/1.1.0/
 [semver]: https://semver.org/spec/v2.0.0.html
