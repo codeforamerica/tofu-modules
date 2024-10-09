@@ -1,4 +1,4 @@
-name: Main Checks
+name: Release Testing
 
 on:
   push:
@@ -76,16 +76,21 @@ jobs:
         id: bump
         uses: commitizen-tools/commitizen-action@master
         with:
-          branch: ${{ steps.module_name.outputs.name }}-release-${{ github.run_id }}
-          push: true
+          push: false
           github_token: ${{ secrets.GITHUB_TOKEN }}
           changelog_increment_filename: release.md
           git_redirect_stderr: true
+      - name: Get commit message
+        id: message
+        run: |
+          MESSAGE=$(git log --format=%B -n 1)
+          echo "message=${MESSAGE}" >> $GITHUB_OUTPUT
       - name: Create pull request
         id: pr
         uses: peter-evans/create-pull-request@v7
         with:
-          branch: ${{ steps.module_name.outputs.name }}-release-${{ github.run_id }}
+          branch: ${{ steps.module_name.outputs.name }}-release-${{ steps.bump.outputs.version }}
+          title: ${{ steps.message.outputs.message }}
 #      - name: Approve pull request
 #        uses: hmarr/auto-approve-action@v4
 #        with:
