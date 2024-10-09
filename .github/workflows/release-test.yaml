@@ -77,6 +77,7 @@ jobs:
           MODULE_PATH="${{ matrix.module }}"
           MODULE_NAME="${MODULE_PATH//\//_}"
           echo -n $MODULE_NAME
+      - run: echo '${{ steps.module_name.outputs }}'
       - name: Bundle the module
         run: tar czf "${{ steps.module_name.outputs.stdout }}-${{ steps.bump.outputs.version }}.tar.gz" ${{ matrix.module }}
       - name: Create release
