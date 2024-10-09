@@ -71,13 +71,18 @@ jobs:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           dry_run: true
           changelog_increment_filename: release.md
+      - name: Get the module name
+        run: |
+          MODULE_PATH="${{ matrix.module }}"
+          MODULE_NAME="${MODULE_PATH//\//_}"
+          echo $MODULE_NAME
       - name: Bundle the module
-        run: tar czf ${{ steps.bump.outputs.version }}.tar.gz ${{ matrix.module }}
+        run: tar czf "${MODULE_NAME}-${{ steps.bump.outputs.version }}.tar.gz" ${{ matrix.module }}
       - name: Create release
         uses: softprops/action-gh-release@v2
         with:
           body_path: release.md
-          tag_name: ${{ steps.bump.outputs.version }}
+          tag_name: ${MODULE_NAME}-${{ steps.bump.outputs.version }}
           files: |
             release.md
-            ${{ steps.bump.outputs.version }}.tar.gz
+            ${MODULE_NAME}-${{ steps.bump.outputs.version }}.tar.gz
