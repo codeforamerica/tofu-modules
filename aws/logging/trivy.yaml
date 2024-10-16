@@ -1,0 +1,10 @@
+exit-code: 1
+misconfiguration:
+  ignore-unfixed: true
+  terraform:
+    exclude-downloaded-modules: true
+scan:
+  scanners:
+    - misconfig
+  skip-dirs:
+    - "**/*/.terraform"

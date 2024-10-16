@@ -1,8 +1,7 @@
 ---
 commitizen:
-  name: cz_conventional_commits
-  tag_format: aptible_managed_endpoint-${version}
-  update_changelog_on_bump: true
-  version: 0.1.0
-  changelog_file: aptible/managed_endpoint/CHANGELOG.md
   changelog_incremental: true
+  name: cz_conventional_commits
+  update_changelog_on_bump: true
+  version: 1.0.0
+  version_scheme: semver2

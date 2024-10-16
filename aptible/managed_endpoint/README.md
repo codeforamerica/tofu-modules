@@ -1,5 +1,7 @@
 # Aptible Managed Endpoint Module
 
+[![Main Checks](https://github.com/codeforamerica/tofu-modules-aptible-managed-endpoint/actions/workflows/main.yaml/badge.svg)](https://github.com/codeforamerica/tofu-modules-aptible-managed-endpoint/actions/workflows/main.yaml) ![GitHub Release](https://img.shields.io/github/v/release/codeforamerica/tofu-modules-aptible-managed-endpoint?logo=github&label=Latest%20Release)
+
 This module creates a [managed HTTPS endpoint][endpoint] in Aptible. It will
 also create the necessary DNS records in Route 53 to verify the domain and
 direct it to the endpoint.
@@ -11,7 +13,7 @@ to match your desired configuration. For example:
 
 ```hcl
 module "endpoint" {
-  source = "github.com/codeforamerica/tofu-modules/aptible/managed_endpoint"
+  source = "github.com/codeforamerica/tofu-modules-aptible-managed-endpoint"
 
   aptible_environment = "my-environment"
   aptible_resource = 12345

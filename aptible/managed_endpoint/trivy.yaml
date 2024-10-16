@@ -1,0 +1,14 @@
+exit-code: 1
+misconfiguration:
+  ignore-unfixed: true
+  terraform:
+    exclude-downloaded-modules: true
+scan:
+  scanners:
+    - misconfig
+  skip-dirs:
+    - "**/*/.terraform"
+exclude:
+  # If we want to use the common "latest" tag in ECR, we have to allow mutable
+  # tags.
+  - aws-ecr-enforce-immutable-repository

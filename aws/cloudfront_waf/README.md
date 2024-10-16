@@ -1,5 +1,7 @@
 # CloudFront WAF Module
 
+[![Main Checks](https://github.com/codeforamerica/tofu-modules-aws-cloudfront-waf/actions/workflows/main.yaml/badge.svg)](https://github.com/codeforamerica/tofu-modules-aws-cloudfront-waf/actions/workflows/main.yaml) ![GitHub Release](https://img.shields.io/github/v/release/codeforamerica/tofu-modules-aws-cloudfront-waf?logo=github&label=Latest%20Release)
+
 This module creates a CloudFront [distribution] that passes traffic through a
 Web Application Firewall (WAF) _without_ caching.
 
@@ -11,7 +13,7 @@ to match your desired configuration. For example, to create a new distribution
 
 ```hcl
 module "cloudfront_waf" {
-  source = "github.com/codeforamerica/tofu-modules/aws/cloudfront_waf"
+  source = "github.com/codeforamerica/tofu-modules-aws-cloudfront-waf"
 
   project     = "my-project"
   environment = "dev"
@@ -81,7 +83,7 @@ resource "aws_wafv2_ip_set" "security_scanners" {
 }
 
 module "cloudfront_waf" {
-  source = "github.com/codeforamerica/tofu-modules/aws/cloudfront_waf"
+  source = "github.com/codeforamerica/tofu-modules-aws-cloudfront-waf"
 
   project     = "my-project"
   environment = "staging"

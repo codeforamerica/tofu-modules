@@ -1,5 +1,7 @@
 # AWS Logging Module
 
+[![Main Checks](https://github.com/codeforamerica/tofu-modules-aws-logging/actions/workflows/main.yaml/badge.svg)](https://github.com/codeforamerica/tofu-modules-aws-logging/actions/workflows/main.yaml) ![GitHub Release](https://img.shields.io/github/v/release/codeforamerica/tofu-modules-aws-logging?logo=github&label=Latest%20Release)
+
 This module created an S3 bucket for logging, as well as a KMS for CloudWatch
 logs.
 
@@ -12,8 +14,8 @@ Add this module to your `main.tf` (or appropriate) file and configure the inputs
 to match your desired configuration. For example:
 
 ```hcl
-module "cloudfront_waf" {
-  source = "github.com/codeforamerica/tofu-modules/aws/logging"
+module "logging" {
+  source = "github.com/codeforamerica/tofu-modules-aws-logging"
 
   project     = "my-project"
   environment = "dev"

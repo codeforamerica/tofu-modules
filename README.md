@@ -23,8 +23,11 @@ terraform.
 [aptible-managed-endpoint]: ./aptible/managed_endpoint/README.md
 [aws-backend]: ./aws/backend/README.md
 [aws-cloudfront-waf]: ./aws/cloudfront_waf/README.md
+[aptible-managed-endpoint]: https://github.com/codeforamerica/tofu-modules-aws-cloudfront-waf
+[aws-backend]: https://github.com/codeforamerica/tofu-modules-aws-backend
+[aws-cloudfront-waf]: https://github.com/codeforamerica/tofu-modules-aws-cloudfront-waf
 [aws-fargate_service]: ./aws/fargate_service/README.md
-[aws-logging]: ./aws/logging/README.md
+[aws-logging]: https://github.com/codeforamerica/tofu-modules-aws-logging
 [aws-secrets]: ./aws/secrets/README.md
 [aws-serverless-database]: ./aws/serverless_database/README.md
 [aws-vpc]: ./aws/vpc/README.md

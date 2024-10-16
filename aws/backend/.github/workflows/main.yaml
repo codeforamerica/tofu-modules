@@ -1,0 +1,46 @@
+name: Main Checks
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  lint:
+    name: Lint updated modules
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout source code
+        uses: actions/checkout@v4
+      - uses: actions/cache@v4
+        name: Cache plugin directory
+        with:
+          path: ~/.tflint.d/plugins
+          key: tflint-${{ hashFiles('.tflint.hcl') }}
+      - uses: terraform-linters/setup-tflint@v4
+        name: Setup TFLint
+      - name: Show version
+        run: tflint --version
+      - name: Init TFLint
+        run: tflint --init
+      - name: Run TFLint
+        run: tflint --format compact --recursive
+
+  trivy:
+    name: Run security scan
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout source code
+        uses: actions/checkout@v4
+      - name: Run Trivy vulnarability scanner
+        uses: aquasecurity/trivy-action@master
+        with:
+          scan-type: config
+          format: sarif
+          output: "trivy-results.sarif"
+      - name: Upload SARIF result
+        # Always run this step, even if a previous step failed.
+        if: always()
+        uses: github/codeql-action/upload-sarif@v3
+        with:
+          sarif_file: "trivy-results.sarif"
