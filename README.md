@@ -20,9 +20,11 @@ terraform.
 | AWS      | [serverless_database][aws-serverless-database] | Aurora Serverless database cluster.                                      |
 | AWS      | [vpc][aws-vpc]                                 | AWS VPC configuration with networking.                                   |
 
-[aptible-managed-endpoint]: ./aptible/managed_endpoint/README.md
-[aws-backend]: ./aws/backend/README.md
-[aws-cloudfront-waf]: ./aws/cloudfront_waf/README.md
+## Contributing
+
+Follow the [contributing guidelines][contributing] to contribute to this
+repository, or any of the OpenTofu module repositories.
+
 [aptible-managed-endpoint]: https://github.com/codeforamerica/tofu-modules-aws-cloudfront-waf
 [aws-backend]: https://github.com/codeforamerica/tofu-modules-aws-backend
 [aws-cloudfront-waf]: https://github.com/codeforamerica/tofu-modules-aws-cloudfront-waf
@@ -31,5 +33,6 @@ terraform.
 [aws-secrets]: ./aws/secrets/README.md
 [aws-serverless-database]: ./aws/serverless_database/README.md
 [aws-vpc]: ./aws/vpc/README.md
+[contributing]: CONTRIBUTING.md
 [opentofu]: https://opentofu.org/
 [terraform]: https://www.terraform.io/
