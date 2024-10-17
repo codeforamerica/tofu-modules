@@ -1,0 +1,12 @@
+[submodule "aptible/managed_endpoint"]
+	path = aptible/managed_endpoint
+	url = git@github.com:codeforamerica/tofu-modules-aptible-managed-endpoint.git
+[submodule "aws/backend"]
+	path = aws/backend
+	url = git@github.com:codeforamerica/tofu-modules-aws-backend.git
+[submodule "aws/logging"]
+	path = aws/logging
+	url = git@github.com:codeforamerica/tofu-modules-aws-logging.git
+[submodule "aws/cloudfront_waf"]
+	path = aws/cloudfront_waf
+	url = git@github.com:codeforamerica/tofu-modules-aws-cloudfront-waf.git
