@@ -1,0 +1,1 @@
+--8<-- "aws/vpc/README.md"
