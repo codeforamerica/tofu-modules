@@ -48,11 +48,11 @@ For example:
 
 ```hcl
 peers = {
-  "aptible": {
-    account_id: "123456789012",
-    vpc_id: "vpc-012ab34cde5678fa9",
-    region: "us-east-1",
-    cidr: "10.123.0.0/16"
+  aptible = {
+    account_id = "123456789012",
+    vpc_id     = "vpc-012ab34cde5678fa9",
+    region     = "us-east-1",
+    cidr       = "10.123.0.0/16"
   }
 }
 ```

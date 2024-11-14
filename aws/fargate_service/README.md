@@ -103,15 +103,16 @@ existing secret. For example:
 
 ```hcl
 environment_secrets = {
-  EXAMPLE_CLIENT_ID = "client:client_id"
+  EXAMPLE_CLIENT_ID  = "client:client_id"
   EXAMPLE_CLIENT_KEY = "arn:aws:secretsmanager:us-east-1:123456789012:secret:project/staging/client:key"
 }
 ```
 
 ### secrets_manager_secrets
 
-> _**Note:** This feature may be removed in a future version. It is recommended
-> to use the [secrets] module to manage secrets instead._
+> [!CAUTION]
+> This feature may be removed in a future version. It is recommended to use the
+> [secrets] module to manage secrets instead.
 
 An optional map of secrets to be created in [AWS Secrets
 Manager][secrets-manager]. Once the secret is created, any changes to the value
@@ -121,7 +122,7 @@ will be ignored. For example, to create a secret named `example`:
 secrets_manager_secrets = {
   example = {
     recovery_window = 7
-    description = "Example credentials for our application."
+    description     = "Example credentials for our application."
   }
 }
 ```

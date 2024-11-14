@@ -14,18 +14,18 @@ to match your desired configuration. For example:
 module "database" {
   source = "github.com/codeforamerica/tofu-modules/aws/serverless_database"
 
+  project     = "my-project"
+  environment = "dev"
+  service     = "web"
+
   logging_key_arn = module.logging.kms_key_arn
   secrets_key_arn = module.secrets.kms_key_arn
-  vpc_id = module.vpc.vpc_id
-  subnets = module.vpc.private_subnets
-  ingress_cidrs = module.vpc.private_subnets_cidr_blocks
+  vpc_id          = module.vpc.vpc_id
+  subnets         = module.vpc.private_subnets
+  ingress_cidrs   = module.vpc.private_subnets_cidr_blocks
 
   min_capacity = 2
   max_capacity = 32
-
-  project                = "my-project"
-  environment            = "dev"
-  service                = "web"
 }
 ```
 
@@ -62,7 +62,6 @@ tofu init -upgrade
 | skip_final_snapshot | Whether to skip the final snapshot when destroying the database cluster.                                                                   | `bool`   | `false` | no       |
 | snapshot_identifier | Optional name or ARN of the snapshot to restore the cluster from. Only applicable on create.                                               | `bool`   | `false` | no       |
 | tags                | Optional tags to be applied to all resources.                                                                                              | `list`   | `[]`    | no       |
-
 
 ## Outputs
 
