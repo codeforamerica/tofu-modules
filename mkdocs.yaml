@@ -30,7 +30,7 @@ markdown_extensions:
 theme:
   name: material
   icon:
-    logo: material/puzzle
+    logo: simple/opentofu
   palette:
     scheme: slate
   features:
@@ -63,22 +63,22 @@ extra:
 nav:
   - Home: index.md
   - Architecture:
-      Overview: architecture/architecture.md
-      Create a New Module: architecture/create.md
-      GitHub Actions: architecture/github-actions.md
+      - Overview: architecture/architecture.md
+      - Create a New Module: architecture/create.md
+      - GitHub Actions: architecture/github-actions.md
   - Modules:
-      Aptible:
-          Managed Endpoint: modules/aptible/managed-endpoint.md
-      AWS:
-          Backend: modules/aws/backend.md
-          CloudFront WAF: modules/aws/cloudfront-waf.md
-          Fargate Service: modules/aws/fargate-service.md
-          Logging: modules/aws/logging.md
-          Secrets: modules/aws/secrets.md
-          Serverless Database: modules/aws/serverless-database.md
-          VPC: modules/aws/vpc.md
+      - Aptible:
+          - Managed Endpoint: modules/aptible/managed-endpoint.md
+      - AWS:
+          - Backend: modules/aws/backend.md
+          - CloudFront WAF: modules/aws/cloudfront-waf.md
+          - Fargate Service: modules/aws/fargate-service.md
+          - Logging: modules/aws/logging.md
+          - Secrets: modules/aws/secrets.md
+          - Serverless Database: modules/aws/serverless-database.md
+          - VPC: modules/aws/vpc.md
   - About:
-      Contributing: contributing.md
-      License: license.md
+      - Contributing: contributing.md
+      - License: license.md
 
 copyright: Produced by Code for America under the MIT license.
