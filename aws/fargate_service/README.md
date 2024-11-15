@@ -146,6 +146,6 @@ secrets_manager_secrets = {
 [container_command]: #container_command
 [ecs-exec]: https://docs.aws.amazon.com/AmazonECS/latest/developerguide/ecs-exec.html
 [environment_secrets]: #environment_secrets
-[secrets]: ../secrets/README.md
+[secrets]: https://github.com/codeforamerica/tofu-modules-aws-secrets
 [secrets-manager]: https://docs.aws.amazon.com/secretsmanager/latest/userguide/intro.html
 [secrets_manager_secrets]: #secrets_manager_secrets
