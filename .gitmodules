@@ -10,3 +10,6 @@
 [submodule "aws/cloudfront_waf"]
 	path = aws/cloudfront_waf
 	url = git@github.com:codeforamerica/tofu-modules-aws-cloudfront-waf.git
+[submodule "aws/secrets"]
+	path = aws/secrets
+	url = git@github.com:codeforamerica/tofu-modules-aws-secrets.git

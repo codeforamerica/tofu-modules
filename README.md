@@ -30,7 +30,7 @@ repository, or any of the OpenTofu module repositories.
 [aws-cloudfront-waf]: https://github.com/codeforamerica/tofu-modules-aws-cloudfront-waf
 [aws-fargate_service]: ./aws/fargate_service/README.md
 [aws-logging]: https://github.com/codeforamerica/tofu-modules-aws-logging
-[aws-secrets]: ./aws/secrets/README.md
+[aws-secrets]: https://github.com/codeforamerica/tofu-modules-aws-secrets
 [aws-serverless-database]: ./aws/serverless_database/README.md
 [aws-vpc]: ./aws/vpc/README.md
 [contributing]: CONTRIBUTING.md
