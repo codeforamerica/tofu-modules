@@ -19,7 +19,7 @@ terraform.
 | AWS      | [secrets][aws-secrets]                         | Manage secrets using AWS Secrets Manager.                                |
 | AWS      | [serverless_database][aws-serverless-database] | Aurora Serverless database cluster.                                      |
 | AWS      | [vpc][aws-vpc]                                 | AWS VPC configuration with networking.                                   |
-| Datadog | [waf][datadog-waf]                             | Datadog dashboard for monitoring AWS WAF.                                |
+| Datadog  | [waf][datadog-waf]                             | Datadog dashboard for monitoring AWS WAF.                                |
 
 ## Contributing
 
