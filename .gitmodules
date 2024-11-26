@@ -13,3 +13,6 @@
 [submodule "aws/secrets"]
 	path = aws/secrets
 	url = git@github.com:codeforamerica/tofu-modules-aws-secrets.git
+[submodule "datadog/waf"]
+	path = datadog/waf
+	url = git@github.com:codeforamerica/tofu-modules-datadog-waf.git
