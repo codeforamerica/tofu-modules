@@ -9,3 +9,4 @@
 [aws-serverless-database]: modules/aws/serverless-database.md
 [aws-vpc]: modules/aws/vpc.md
 [contributing]: contributing.md
+[datadog-waf]: modules/datadog/waf.md

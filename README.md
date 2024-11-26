@@ -19,6 +19,7 @@ terraform.
 | AWS      | [secrets][aws-secrets]                         | Manage secrets using AWS Secrets Manager.                                |
 | AWS      | [serverless_database][aws-serverless-database] | Aurora Serverless database cluster.                                      |
 | AWS      | [vpc][aws-vpc]                                 | AWS VPC configuration with networking.                                   |
+| Datadog | [waf][datadog-waf]                             | Datadog dashboard for monitoring AWS WAF.                                |
 
 ## Contributing
 
@@ -34,5 +35,6 @@ repository, or any of the OpenTofu module repositories.
 [aws-serverless-database]: ./aws/serverless_database/README.md
 [aws-vpc]: ./aws/vpc/README.md
 [contributing]: CONTRIBUTING.md
+[datadog-waf]: https://github.com/codeforamerica/tofu-modules-datadog-waf
 [opentofu]: https://opentofu.org/
 [terraform]: https://www.terraform.io/
