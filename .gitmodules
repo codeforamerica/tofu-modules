@@ -16,3 +16,6 @@
 [submodule "datadog/waf"]
 	path = datadog/waf
 	url = git@github.com:codeforamerica/tofu-modules-datadog-waf.git
+[submodule "aws/fargate_service"]
+	path = aws/fargate_service
+	url = git@github.com:codeforamerica/tofu-modules-aws-fargate-service.git
