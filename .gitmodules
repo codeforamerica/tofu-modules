@@ -19,3 +19,6 @@
 [submodule "aws/fargate_service"]
 	path = aws/fargate_service
 	url = git@github.com:codeforamerica/tofu-modules-aws-fargate-service.git
+[submodule "aws/serverless_database"]
+	path = aws/serverless_database
+	url = git@github.com:codeforamerica/tofu-modules-aws-serverless-database.git
