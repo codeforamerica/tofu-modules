@@ -1,6 +1,6 @@
 site_name: Code for America OpenTofu Modules
 repo_url: https://github.com/codeforamerica/tofu-modules
-#edit_uri: edit/main/docs/
+edit_uri: edit/main/docs/
 
 plugins:
   - search
