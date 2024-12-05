@@ -22,3 +22,6 @@
 [submodule "aws/serverless_database"]
 	path = aws/serverless_database
 	url = git@github.com:codeforamerica/tofu-modules-aws-serverless-database.git
+[submodule "aws/vpc"]
+	path = aws/vpc
+	url = git@github.com:codeforamerica/tofu-modules-aws-vpc.git
