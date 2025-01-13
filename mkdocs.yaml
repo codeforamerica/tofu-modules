@@ -3,6 +3,7 @@ repo_url: https://github.com/codeforamerica/tofu-modules
 edit_uri: edit/main/docs/
 
 plugins:
+  - mkdocs-nav-weight
   - search
 
 markdown_extensions:
@@ -59,28 +60,5 @@ extra:
     - icon: fontawesome/brands/x-twitter
       link: https://www.threads.net/@codeforamerica
       name: Code for America on X (formerly Twitter)
-
-nav:
-  - Home: index.md
-  - Architecture:
-      - Overview: architecture/architecture.md
-      - Create a New Module: architecture/create.md
-      - GitHub Actions: architecture/github-actions.md
-  - Modules:
-      - Aptible:
-          - Managed Endpoint: modules/aptible/managed-endpoint.md
-      - AWS:
-          - Backend: modules/aws/backend.md
-          - CloudFront WAF: modules/aws/cloudfront-waf.md
-          - Fargate Service: modules/aws/fargate-service.md
-          - Logging: modules/aws/logging.md
-          - Secrets: modules/aws/secrets.md
-          - Serverless Database: modules/aws/serverless-database.md
-          - VPC: modules/aws/vpc.md
-      - Datadog:
-          - WAF: modules/datadog/waf.md
-  - About:
-      - Contributing: contributing.md
-      - License: license.md
 
 copyright: Produced by Code for America under the MIT license.
