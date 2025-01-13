@@ -1,3 +1,3 @@
 --8<-- "datadog/waf/README.md"
 
-[screenshot-dashboard]: ../../assets/dashboard.jpeg
+[screenshot-dashboard]: ../../assets/dashboard.png
