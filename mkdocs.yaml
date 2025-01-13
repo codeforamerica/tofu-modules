@@ -77,6 +77,8 @@ nav:
           - Secrets: modules/aws/secrets.md
           - Serverless Database: modules/aws/serverless-database.md
           - VPC: modules/aws/vpc.md
+      - Datadog:
+          - WAF: modules/datadog/waf.md
   - About:
       - Contributing: contributing.md
       - License: license.md
