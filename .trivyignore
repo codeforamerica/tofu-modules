@@ -1,3 +1,0 @@
-# Our Dockerfile is only used for building the docs, so we don't need a
-# healthcheck.
-AVD-DS-0026
