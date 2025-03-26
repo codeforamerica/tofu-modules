@@ -18,6 +18,7 @@ terraform.
 | AWS      | [logging][aws-logging]                         | Basic logging configurations for AWS.                                    |
 | AWS      | [secrets][aws-secrets]                         | Manage secrets using AWS Secrets Manager.                                |
 | AWS      | [serverless_database][aws-serverless-database] | Aurora Serverless database cluster.                                      |
+| AWS      | [ssm_bastion][aws-ssm-bastion]                 | Use Systems Manager (SSM) and EC2 as a bastion.                          |
 | AWS      | [vpc][aws-vpc]                                 | AWS VPC configuration with networking.                                   |
 | Datadog  | [waf][datadog-waf]                             | Datadog dashboard for monitoring AWS WAF.                                |
 
@@ -33,6 +34,7 @@ repository, or any of the OpenTofu module repositories.
 [aws-logging]: https://github.com/codeforamerica/tofu-modules-aws-logging
 [aws-secrets]: https://github.com/codeforamerica/tofu-modules-aws-secrets
 [aws-serverless-database]: https://github.com/codeforamerica/tofu-modules-aws-serverless-database
+[aws-ssm-bastion]: https://github.com/codeforamerica/tofu-modules-aws-ssm-bastion
 [aws-vpc]: https://github.com/codeforamerica/tofu-modules-aws-vpc
 [contributing]: CONTRIBUTING.md
 [datadog-waf]: https://github.com/codeforamerica/tofu-modules-datadog-waf
