@@ -35,6 +35,6 @@ jobs:
           path: .cache
           restore-keys: |
             mkdocs-material-
-      - run: pip install mkdocs-material markdown-callouts mkdocs-nav-weight pymdown-extensions plantuml_markdown
+      - run: pip install mkdocs-material markdown-callouts mdx_truly_sane_lists mkdocs-nav-weight pymdown-extensions plantuml_markdown
       - run: mkdocs build
       - run: aws s3 sync ./site "s3://${{ env.BUCKET_NAME || 'dev.docs.cfa.codes' }}/${{ env.PREFIX || 'tofu-modules' }}"
