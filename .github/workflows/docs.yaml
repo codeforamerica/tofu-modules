@@ -2,32 +2,35 @@ name: Deploy documentation
 
 on:
   workflow_dispatch:
+    inputs:
+      environment:
+        description: Environment to deploy to.
+        default: docs-dev
+        required: true
+        type: environment
   push:
     branches:
       - main
 
+permissions:
+  contents: read
+
 jobs:
   deploy:
-    name: Deploy Documentation
-    environment: 'docs-dev'
+    name: Deploy Documentation to ${{ inputs.environment }}
+    environment: ${{ inputs.environment }}
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-        with:
-          submodules: true
-      - name: Copy assets from submodules
-        run: rsync -av --progress */**/docs/assets/ docs/assets --exclude .git --exclude .idea --exclude docs
       - name: Set up AWS credentials
         uses: aws-actions/configure-aws-credentials@v4
         with:
           aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-          aws-region: us-east-1
+          aws-region: ${{ env.AWS_REGION || 'us-east-1' }}
       - uses: actions/setup-python@v5
         with:
           python-version: 3.x
-      - name: Install packages
-        run: sudo apt-get update && sudo apt-get install -y plantuml
       - run: echo "cache_id=$(date --utc '+%V')" >> $GITHUB_ENV
       - uses: actions/cache@v4
         with:
@@ -35,6 +38,6 @@ jobs:
           path: .cache
           restore-keys: |
             mkdocs-material-
-      - run: pip install mkdocs-material markdown-callouts mdx_truly_sane_lists mkdocs-nav-weight pymdown-extensions plantuml_markdown
+      - run: pip install mkdocs-material markdown-callouts mdx_truly_sane_lists mkdocs-nav-weight pymdown-extensions
       - run: mkdocs build
-      - run: aws s3 sync ./site "s3://${{ env.BUCKET_NAME || 'dev.docs.cfa.codes' }}/${{ env.PREFIX || 'tofu-modules' }}"
+      - run: aws s3 sync ./site "s3://${{ env.DOCS_BUCKET || 'docs.dev.services.cfa.codes' }}/${{ env.PREFIX || 'tofu-modules' }}"
