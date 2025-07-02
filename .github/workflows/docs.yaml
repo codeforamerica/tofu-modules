@@ -11,14 +11,15 @@ on:
   push:
     branches:
       - main
+      - docs
 
 permissions:
   contents: read
 
 jobs:
   deploy:
-    name: Deploy Documentation to ${{ inputs.environment }}
-    environment: ${{ inputs.environment }}
+    name: Deploy Documentation to ${{ inputs.environment || 'docs-dev' }}
+    environment: ${{ inputs.environment || 'docs-dev' }}
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
