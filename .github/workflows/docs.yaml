@@ -17,11 +17,15 @@ permissions:
 
 jobs:
   deploy:
-    name: Deploy Documentation to ${{ inputs.environment }}
-    environment: ${{ inputs.environment }}
+    name: Deploy Documentation to ${{ inputs.environment || 'docs-dev' }}
+    environment: ${{ inputs.environment || 'docs-dev' }}
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+        with:
+          submodules: true
+      - name: Copy assets from submodules
+        run: rsync -av --progress */**/docs/assets/ docs/assets --exclude .git --exclude .idea --exclude docs
       - name: Set up AWS credentials
         uses: aws-actions/configure-aws-credentials@v4
         with:
