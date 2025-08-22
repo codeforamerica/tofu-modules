@@ -14,6 +14,7 @@ terraform.
 | Aptible  | [managed_endpoint][aptible-managed-endpoint]   | Managed HTTPS endpoint for Aptible.                                      | [![GitHub Release][aptible-managed-endpoint-badge]][aptible-managed-endpoint-release] |
 | AWS      | [backend][aws-backend]                         | S3 storage backend for tfstate.                                          | [![GitHub Release][aws-backend-badge]][aws-backend-release]                           |
 | AWS      | [cloudfront_waf][aws-cloudfront-waf]           | CloudFront distribution that passes traffic through WAF without caching. | [![GitHub Release][aws-cloudfront-waf-badge]][aws-cloudfront-waf-release]             |
+| AWS      | [doppler][aws-doppler]                         | Doppler sync for AWS Secrets Manager.                                    | [![GitHub Release][aws-doppler-badge]][aws-doppler-release]                           |
 | AWS      | [fargate_service][aws-fargate-service]         | ECS Fargate container hosting service.                                   | [![GitHub Release][aws-fargate-service-badge]][aws-fargate-service-release]           |
 | AWS      | [logging][aws-logging]                         | Basic logging configurations for AWS.                                    | [![GitHub Release][aws-logging-badge]][aws-logging-release]                           |
 | AWS      | [secrets][aws-secrets]                         | Manage secrets using AWS Secrets Manager.                                | [![GitHub Release][aws-secrets-badge]][aws-secrets-release]                           |
@@ -36,6 +37,9 @@ repository, or any of the OpenTofu module repositories.
 [aws-cloudfront-waf]: https://github.com/codeforamerica/tofu-modules-aws-cloudfront-waf
 [aws-cloudfront-waf-badge]: https://img.shields.io/github/v/release/codeforamerica/tofu-modules-aws-cloudfront-waf?logo=github&label=Latest%20Release
 [aws-cloudfront-waf-release]: https://github.com/codeforamerica/tofu-modules-aws-cloudfront-waf/releases/latest
+[aws-doppler]: https://github.com/codeforamerica/tofu-modules-aws-doppler
+[aws-doppler-badge]: https://img.shields.io/github/v/release/codeforamerica/tofu-modules-aws-doppler?logo=github&label=Latest%20Release
+[aws-doppler-release]: https://github.com/codeforamerica/tofu-modules-aws-doppler/releases/latest
 [aws-fargate-service]: https://github.com/codeforamerica/tofu-modules-aws-fargate-service
 [aws-fargate-service-badge]: https://img.shields.io/github/v/release/codeforamerica/tofu-modules-aws-fargate-service?logo=github&label=Latest%20Release
 [aws-fargate-service-release]: https://github.com/codeforamerica/tofu-modules-aws-fargate-service/releases/latest
