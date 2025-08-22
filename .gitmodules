@@ -28,3 +28,6 @@
 [submodule "aws/ssm_bastion"]
 	path = aws/ssm_bastion
 	url = git@github.com:codeforamerica/tofu-modules-aws-ssm-bastion.git
+[submodule "aws/doppler"]
+	path = aws/doppler
+	url = git@github.com:codeforamerica/tofu-modules-aws-doppler.git
