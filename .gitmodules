@@ -31,3 +31,9 @@
 [submodule "aws/doppler"]
 	path = aws/doppler
 	url = git@github.com:codeforamerica/tofu-modules-aws-doppler.git
+[submodule "aws/ssm_inputs"]
+	path = aws/ssm_inputs
+	url = git@github.com:codeforamerica/tofu-modules-aws-ssm-inputs.git
+[submodule "aws/ssm_outputs"]
+	path = aws/ssm_outputs
+	url = git@github.com:codeforamerica/tofu-modules-aws-ssm-outputs.git
