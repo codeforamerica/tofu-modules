@@ -12,6 +12,8 @@ title: Home
 [aws-secrets]: modules/aws/secrets.md
 [aws-serverless-database]: modules/aws/serverless-database.md
 [aws-ssm-bastion]: modules/aws/ssm-bastion.md
+[aws-ssm-inputs]: modules/aws/ssm-inputs.md
+[aws-ssm-outputs]: modules/aws/ssm-outputs.md
 [aws-vpc]: modules/aws/vpc.md
 [contributing]: about/index.md
 [datadog-waf]: modules/datadog/waf.md

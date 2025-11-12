@@ -20,6 +20,8 @@ terraform.
 | AWS      | [secrets][aws-secrets]                         | Manage secrets using AWS Secrets Manager.                                | [![GitHub Release][aws-secrets-badge]][aws-secrets-release]                           |
 | AWS      | [serverless_database][aws-serverless-database] | Aurora Serverless database cluster.                                      | [![GitHub Release][aws-serverless-database-badge]][aws-serverless-database-release]   |
 | AWS      | [ssm_bastion][aws-ssm-bastion]                 | Use Systems Manager (SSM) and EC2 as a bastion.                          | [![GitHub Release][aws-ssm-bastion-badge]][aws-ssm-bastion-release]                   |
+| AWS      | [ssm_inputs][aws-ssm-inputs]                   | Use SSM parameter store to read inputs for your infrastructure.          | [![GitHub Release][aws-ssm-inputs-badge]][aws-ssm-inputs-release]                     |
+| AWS      | [ssm_outputs][aws-ssm-outputs]                 | Use SSM parameter store to store outputs to be used by other confgs.     | [![GitHub Release][aws-ssm-outputs-badge]][aws-ssm-outputs-release]                   |
 | AWS      | [vpc][aws-vpc]                                 | AWS VPC configuration with networking.                                   | [![GitHub Release][aws-vpc-badge]][aws-vpc-release]                                   |
 | Datadog  | [waf][datadog-waf]                             | Datadog dashboard for monitoring AWS WAF.                                | [![GitHub Release][datadog-waf-badge]][datadog-waf-release]                           |
 
@@ -55,6 +57,12 @@ repository, or any of the OpenTofu module repositories.
 [aws-ssm-bastion]: https://github.com/codeforamerica/tofu-modules-aws-ssm-bastion
 [aws-ssm-bastion-badge]: https://img.shields.io/github/v/release/codeforamerica/tofu-modules-aws-ssm-bastion?logo=github&label=Latest%20Release
 [aws-ssm-bastion-release]: https://github.com/codeforamerica/tofu-modules-aws-ssm-bastion/releases/latest
+[aws-ssm-inputs]: https://github.com/codeforamerica/tofu-modules-aws-ssm-inputs
+[aws-ssm-inputs-badge]: https://img.shields.io/github/v/release/codeforamerica/tofu-modules-aws-ssm-inputs?logo=github&label=Latest%20Release
+[aws-ssm-inputs-release]: https://github.com/codeforamerica/tofu-modules-aws-ssm-inputs/releases/latest
+[aws-ssm-outputs]: https://github.com/codeforamerica/tofu-modules-aws-ssm-outputs
+[aws-ssm-outputs-badge]: https://img.shields.io/github/v/release/codeforamerica/tofu-modules-aws-ssm-outputs?logo=github&label=Latest%20Release
+[aws-ssm-outputs-release]: https://github.com/codeforamerica/tofu-modules-aws-ssm-outputs/releases/latest
 [aws-vpc]: https://github.com/codeforamerica/tofu-modules-aws-vpc
 [aws-vpc-badge]: https://img.shields.io/github/v/release/codeforamerica/tofu-modules-aws-vpc?logo=github&label=Latest%20Release
 [aws-vpc-release]: https://github.com/codeforamerica/tofu-modules-aws-vpc/releases/latest
