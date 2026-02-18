@@ -1,4 +1,4 @@
-FROM squidfunk/mkdocs-material:9.5
+FROM squidfunk/mkdocs-material:9.7
 
 # Install PlantUML so we can render UML diagrams.
 RUN pip install markdown-callouts mdx_truly_sane_lists mkdocs-nav-weight plantuml_markdown
