@@ -5,12 +5,14 @@ title: Home
 
 [aptible-managed-endpoint]: modules/aptible/managed-endpoint.md
 [aws-backend]: modules/aws/backend.md
+[aws-cloudfront-redirect]: modules/aws/cloudfront-redirect.md
 [aws-cloudfront-waf]: modules/aws/cloudfront-waf.md
 [aws-doppler]: modules/aws/doppler/index.md
 [aws-fargate-service]: modules/aws/fargate-service.md
 [aws-logging]: modules/aws/logging.md
 [aws-secrets]: modules/aws/secrets.md
 [aws-serverless-database]: modules/aws/serverless-database.md
+[aws-ses]: modules/aws/ses.md
 [aws-ssm-bastion]: modules/aws/ssm-bastion.md
 [aws-ssm-inputs]: modules/aws/ssm-inputs.md
 [aws-ssm-outputs]: modules/aws/ssm-outputs.md

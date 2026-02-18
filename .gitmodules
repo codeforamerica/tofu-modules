@@ -37,3 +37,9 @@
 [submodule "aws/ssm_outputs"]
 	path = aws/ssm_outputs
 	url = git@github.com:codeforamerica/tofu-modules-aws-ssm-outputs.git
+[submodule "aws/ses"]
+	path = aws/ses
+	url = git@github.com:codeforamerica/tofu-modules-aws-ses.git
+[submodule "aws/cloudfront_redirect"]
+	path = aws/cloudfront_redirect
+	url = git@github.com:codeforamerica/tofu-modules-aws-cloudfront-redirect.git

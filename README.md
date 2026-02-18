@@ -10,18 +10,20 @@ terraform.
 ## Modules
 
 | Provider | Module                                         | Description                                                              | Latest Version                                                                        |
-|----------|------------------------------------------------|--------------------------------------------------------------------------|---------------------------------------------------------------------------------------|
+| -------- | ---------------------------------------------- | ------------------------------------------------------------------------ | ------------------------------------------------------------------------------------- |
 | Aptible  | [managed_endpoint][aptible-managed-endpoint]   | Managed HTTPS endpoint for Aptible.                                      | [![GitHub Release][aptible-managed-endpoint-badge]][aptible-managed-endpoint-release] |
 | AWS      | [backend][aws-backend]                         | S3 storage backend for tfstate.                                          | [![GitHub Release][aws-backend-badge]][aws-backend-release]                           |
+| AWS      | [cloudfront_redirect][aws-cloudfront-redirect] | CloudFront distribution redirects traffic to a different URL.            | [![GitHub Release][aws-cloudfront-redirect-badge]][aws-cloudfront-redirect-release]   |
 | AWS      | [cloudfront_waf][aws-cloudfront-waf]           | CloudFront distribution that passes traffic through WAF without caching. | [![GitHub Release][aws-cloudfront-waf-badge]][aws-cloudfront-waf-release]             |
 | AWS      | [doppler][aws-doppler]                         | Doppler sync for AWS Secrets Manager.                                    | [![GitHub Release][aws-doppler-badge]][aws-doppler-release]                           |
 | AWS      | [fargate_service][aws-fargate-service]         | ECS Fargate container hosting service.                                   | [![GitHub Release][aws-fargate-service-badge]][aws-fargate-service-release]           |
 | AWS      | [logging][aws-logging]                         | Basic logging configurations for AWS.                                    | [![GitHub Release][aws-logging-badge]][aws-logging-release]                           |
 | AWS      | [secrets][aws-secrets]                         | Manage secrets using AWS Secrets Manager.                                | [![GitHub Release][aws-secrets-badge]][aws-secrets-release]                           |
 | AWS      | [serverless_database][aws-serverless-database] | Aurora Serverless database cluster.                                      | [![GitHub Release][aws-serverless-database-badge]][aws-serverless-database-release]   |
+| AWS      | [ses][aws-ses]                                 | Configure and Amazon Simple Email Service (SES) for sending email.       | [![GitHub Release][aws-ses-badge]][aws-ses-release]                                   |
 | AWS      | [ssm_bastion][aws-ssm-bastion]                 | Use Systems Manager (SSM) and EC2 as a bastion.                          | [![GitHub Release][aws-ssm-bastion-badge]][aws-ssm-bastion-release]                   |
 | AWS      | [ssm_inputs][aws-ssm-inputs]                   | Use SSM parameter store to read inputs for your infrastructure.          | [![GitHub Release][aws-ssm-inputs-badge]][aws-ssm-inputs-release]                     |
-| AWS      | [ssm_outputs][aws-ssm-outputs]                 | Use SSM parameter store to store outputs to be used by other confgs.     | [![GitHub Release][aws-ssm-outputs-badge]][aws-ssm-outputs-release]                   |
+| AWS      | [ssm_outputs][aws-ssm-outputs]                 | Use SSM parameter store to store outputs to be used by other configs.    | [![GitHub Release][aws-ssm-outputs-badge]][aws-ssm-outputs-release]                   |
 | AWS      | [vpc][aws-vpc]                                 | AWS VPC configuration with networking.                                   | [![GitHub Release][aws-vpc-badge]][aws-vpc-release]                                   |
 | Datadog  | [waf][datadog-waf]                             | Datadog dashboard for monitoring AWS WAF.                                | [![GitHub Release][datadog-waf-badge]][datadog-waf-release]                           |
 
@@ -36,6 +38,9 @@ repository, or any of the OpenTofu module repositories.
 [aws-backend]: https://github.com/codeforamerica/tofu-modules-aws-backend
 [aws-backend-badge]: https://img.shields.io/github/v/release/codeforamerica/tofu-modules-aws-backend?logo=github&label=Latest%20Release
 [aws-backend-release]: https://github.com/codeforamerica/tofu-modules-aws-backend/releases/latest
+[aws-cloudfront-redirect]: https://github.com/codeforamerica/tofu-modules-aws-cloudfront-redirect
+[aws-cloudfront-redirect-badge]: https://img.shields.io/github/v/release/codeforamerica/tofu-modules-aws-cloudfront-redirect?logo=github&label=Latest%20Release
+[aws-cloudfront-redirect-release]: https://github.com/codeforamerica/tofu-modules-aws-cloudfront-redirect/releases/latest
 [aws-cloudfront-waf]: https://github.com/codeforamerica/tofu-modules-aws-cloudfront-waf
 [aws-cloudfront-waf-badge]: https://img.shields.io/github/v/release/codeforamerica/tofu-modules-aws-cloudfront-waf?logo=github&label=Latest%20Release
 [aws-cloudfront-waf-release]: https://github.com/codeforamerica/tofu-modules-aws-cloudfront-waf/releases/latest
@@ -54,6 +59,9 @@ repository, or any of the OpenTofu module repositories.
 [aws-serverless-database]: https://github.com/codeforamerica/tofu-modules-aws-serverless-database
 [aws-serverless-database-badge]: https://img.shields.io/github/v/release/codeforamerica/tofu-modules-aws-serverless-database?logo=github&label=Latest%20Release
 [aws-serverless-database-release]: https://github.com/codeforamerica/tofu-modules-aws-serverless-database/releases/latest
+[aws-ses]: https://github.com/codeforamerica/tofu-modules-aws-ses
+[aws-ses-badge]: https://img.shields.io/github/v/release/codeforamerica/tofu-modules-aws-ses?logo=github&label=Latest%20Release
+[aws-ses-release]: https://github.com/codeforamerica/tofu-modules-aws-ses/releases/latest
 [aws-ssm-bastion]: https://github.com/codeforamerica/tofu-modules-aws-ssm-bastion
 [aws-ssm-bastion-badge]: https://img.shields.io/github/v/release/codeforamerica/tofu-modules-aws-ssm-bastion?logo=github&label=Latest%20Release
 [aws-ssm-bastion-release]: https://github.com/codeforamerica/tofu-modules-aws-ssm-bastion/releases/latest
