@@ -18,4 +18,5 @@ title: Home
 [aws-ssm-outputs]: modules/aws/ssm-outputs.md
 [aws-vpc]: modules/aws/vpc.md
 [contributing]: about/index.md
+[datadog-sds]: modules/datadog/sds.md
 [datadog-waf]: modules/datadog/waf.md
