@@ -25,6 +25,7 @@ terraform.
 | AWS      | [ssm_inputs][aws-ssm-inputs]                   | Use SSM parameter store to read inputs for your infrastructure.          | [![GitHub Release][aws-ssm-inputs-badge]][aws-ssm-inputs-release]                     |
 | AWS      | [ssm_outputs][aws-ssm-outputs]                 | Use SSM parameter store to store outputs to be used by other configs.    | [![GitHub Release][aws-ssm-outputs-badge]][aws-ssm-outputs-release]                   |
 | AWS      | [vpc][aws-vpc]                                 | AWS VPC configuration with networking.                                   | [![GitHub Release][aws-vpc-badge]][aws-vpc-release]                                   |
+| Datadog  | [sensitive-data-scanner][datadog-sds]          | Datadog Sensitive Data Scanner configuration.                            | [![GitHub Release][datadog-sds-badge]][datadog-sds-release]                           |
 | Datadog  | [waf][datadog-waf]                             | Datadog dashboard for monitoring AWS WAF.                                | [![GitHub Release][datadog-waf-badge]][datadog-waf-release]                           |
 
 ## Contributing
@@ -75,6 +76,9 @@ repository, or any of the OpenTofu module repositories.
 [aws-vpc-badge]: https://img.shields.io/github/v/release/codeforamerica/tofu-modules-aws-vpc?logo=github&label=Latest%20Release
 [aws-vpc-release]: https://github.com/codeforamerica/tofu-modules-aws-vpc/releases/latest
 [contributing]: CONTRIBUTING.md
+[datadog-sds]: https://github.com/codeforamerica/tofu-modules-datadog-sensitive-data-scanner
+[datadog-sds-badge]: https://img.shields.io/github/v/release/codeforamerica/tofu-modules-datadog-sensitive-data-scanner?logo=github&label=Latest%20Release
+[datadog-sds-release]: https://github.com/codeforamerica/tofu-modules-datadog-sensitive-data-scanner/releases/latest
 [datadog-waf]: https://github.com/codeforamerica/tofu-modules-datadog-waf
 [datadog-waf-badge]: https://img.shields.io/github/v/release/codeforamerica/tofu-modules-datadog-waf?logo=github&label=Latest%20Release
 [datadog-waf-release]: https://github.com/codeforamerica/tofu-modules-datadog-waf/releases/latest
