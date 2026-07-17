@@ -40,3 +40,7 @@ terraform.rc
 /**/*/package-lock.json
 /**/*/node_modules
 /**/*/LICENSE
+
+# Zensical build output and virtual environment
+/site/
+.venv/
