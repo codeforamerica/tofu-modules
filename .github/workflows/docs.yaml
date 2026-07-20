@@ -32,24 +32,8 @@ jobs:
           aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           aws-region: ${{ env.AWS_REGION || 'us-east-1' }}
-      - uses: actions/setup-python@v6
-        with:
-          python-version: 3.x
-      - run: echo "cache_id=$(date --utc '+%V')" >> $GITHUB_ENV
-      - uses: actions/cache@v5
-        with:
-          key: mkdocs-material-${{ env.cache_id }}
-          path: .cache
-          restore-keys: |
-            mkdocs-material-
-      - name: Install python dependencies
-        run: |
-          pip install \
-            mkdocs-material \
-            markdown-callouts \
-            mdx_truly_sane_lists \
-            mkdocs-nav-weight \
-            pymdown-extensions \
-            plantuml_markdown
-      - run: mkdocs build
+      - name: Install uv
+        uses: astral-sh/setup-uv@08807647e7069bb48b6ef5acd8ec9567f424441b # 8.0.1
+      - name: Build documentation
+        run: uv run --frozen zensical build
       - run: aws s3 sync ./site "s3://${{ env.DOCS_BUCKET || 'docs.dev.services.cfa.codes' }}/${{ env.PREFIX || 'tofu-modules' }}"
