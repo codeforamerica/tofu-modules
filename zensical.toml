@@ -35,7 +35,7 @@ nav = [
       "modules/aws/vpc.md",
     ]},
     { "Datadog" = [
-      "modules/datadog/sds.md",
+      "modules/datadog/sensitive-data-scanner.md",
       "modules/datadog/waf.md",
     ]},
   ]},
