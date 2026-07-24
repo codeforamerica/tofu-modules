@@ -46,3 +46,6 @@
 [submodule "aws/cloudfront_redirect"]
 	path = aws/cloudfront_redirect
 	url = git@github.com:codeforamerica/tofu-modules-aws-cloudfront-redirect.git
+[submodule "aws/s3_bucket"]
+	path = aws/s3_bucket
+	url = git@github.com:codeforamerica/tofu-modules-aws-s3-bucket.git

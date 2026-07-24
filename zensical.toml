@@ -26,6 +26,10 @@ nav = [
       ]},
       "modules/aws/fargate-service.md",
       "modules/aws/logging.md",
+      { "S3 Bucket" = [
+        "modules/aws/s3_bucket/index.md",
+        "modules/aws/s3_bucket/modules/uploads.md",
+      ]},
       "modules/aws/secrets.md",
       "modules/aws/serverless-database.md",
       "modules/aws/ses.md",
