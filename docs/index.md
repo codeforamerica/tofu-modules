@@ -10,6 +10,7 @@ title: Home
 [aws-doppler]: modules/aws/doppler/index.md
 [aws-fargate-service]: modules/aws/fargate-service.md
 [aws-logging]: modules/aws/logging.md
+[aws-s3-bucket]: modules/aws/s3_bucket/index.md
 [aws-secrets]: modules/aws/secrets.md
 [aws-serverless-database]: modules/aws/serverless-database.md
 [aws-ses]: modules/aws/ses.md

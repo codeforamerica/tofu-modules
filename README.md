@@ -18,6 +18,7 @@ terraform.
 | AWS      | [doppler][aws-doppler]                         | Doppler sync for AWS Secrets Manager.                                    | [![GitHub Release][aws-doppler-badge]][aws-doppler-release]                           |
 | AWS      | [fargate_service][aws-fargate-service]         | ECS Fargate container hosting service.                                   | [![GitHub Release][aws-fargate-service-badge]][aws-fargate-service-release]           |
 | AWS      | [logging][aws-logging]                         | Basic logging configurations for AWS.                                    | [![GitHub Release][aws-logging-badge]][aws-logging-release]                           |
+| AWS      | [s3_bucket][aws-s3-bucket]                     | S3 bucket configuration with submodule for different bucket types.       | [![GitHub Release][aws-s3-bucket-badge]][aws-s3-bucket-release]                       |
 | AWS      | [secrets][aws-secrets]                         | Manage secrets using AWS Secrets Manager.                                | [![GitHub Release][aws-secrets-badge]][aws-secrets-release]                           |
 | AWS      | [serverless_database][aws-serverless-database] | Aurora Serverless database cluster.                                      | [![GitHub Release][aws-serverless-database-badge]][aws-serverless-database-release]   |
 | AWS      | [ses][aws-ses]                                 | Configure and Amazon Simple Email Service (SES) for sending email.       | [![GitHub Release][aws-ses-badge]][aws-ses-release]                                   |
@@ -54,6 +55,9 @@ repository, or any of the OpenTofu module repositories.
 [aws-logging]: https://github.com/codeforamerica/tofu-modules-aws-logging
 [aws-logging-badge]: https://img.shields.io/github/v/release/codeforamerica/tofu-modules-aws-logging?logo=github&label=Latest%20Release
 [aws-logging-release]: https://github.com/codeforamerica/tofu-modules-aws-logging/releases/latest
+[aws-s3-bucket]: https://github.com/codeforamerica/tofu-modules-aws-s3-bucket
+[aws-s3-bucket-badge]: https://img.shields.io/github/v/release/codeforamerica/tofu-modules-aws-s3-bucket?logo=github&label=Latest%20Release
+[aws-s3-bucket-release]: https://github.com/codeforamerica/tofu-modules-aws-s3-bucket/releases/latest
 [aws-secrets]: https://github.com/codeforamerica/tofu-modules-aws-secrets
 [aws-secrets-badge]: https://img.shields.io/github/v/release/codeforamerica/tofu-modules-aws-secrets?logo=github&label=Latest%20Release
 [aws-secrets-release]: https://github.com/codeforamerica/tofu-modules-aws-secrets/releases/latest
