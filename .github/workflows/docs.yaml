@@ -1,4 +1,4 @@
-name: Deploy documentation
+name: Deploy to shared documentation hosting
 
 on:
   workflow_dispatch:
@@ -9,31 +9,56 @@ on:
         required: true
         type: environment
   push:
+    paths:
+      # Only trigger on changes to documentation files.
+      - 'docs/**'
+      - 'zensical.toml'
+      - 'pyproject.toml'
+      - 'uv.lock'
+      - '.github/workflows/docs.yaml'
+      - '*.md'
     branches:
       - main
 
 permissions:
   contents: read
 
+run-name: Deploy documentation to ${{ inputs.environment || 'docs-dev' }}
+
 jobs:
-  deploy:
-    name: Deploy Documentation to ${{ inputs.environment || 'docs-dev' }}
-    environment: ${{ inputs.environment || 'docs-dev' }}
+  build:
+    # We need to copy assets from submodules, so we can't use the shared
+    # Zensical build workflow.
+    name: Build documentation
     runs-on: ubuntu-latest
+    outputs:
+      artifact-id: ${{ steps.upload.outputs.artifact-id }}
     steps:
-      - uses: actions/checkout@v6
+      - name: Checkout repository
+        uses: actions/checkout@v7
         with:
           submodules: true
       - name: Copy assets from submodules
         run: rsync -av --progress */**/docs/assets/ docs/assets --exclude .git --exclude .idea --exclude docs
-      - name: Set up AWS credentials
-        uses: aws-actions/configure-aws-credentials@v6
-        with:
-          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
-          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-          aws-region: ${{ env.AWS_REGION || 'us-east-1' }}
       - name: Install uv
-        uses: astral-sh/setup-uv@08807647e7069bb48b6ef5acd8ec9567f424441b # 8.0.1
+        uses: astral-sh/setup-uv@1c37ad07a6a961277cf70c0d37d6f313000f5884 # v10.3.0
       - name: Build documentation
-        run: uv run --frozen zensical build
-      - run: aws s3 sync ./site "s3://${{ env.DOCS_BUCKET || 'docs.dev.services.cfa.codes' }}/${{ env.PREFIX || 'tofu-modules' }}"
+        run: uv run --locked zensical build
+      - name: Upload built site
+        uses: actions/upload-artifact@v7
+        id: upload
+        with:
+          name: documentation
+          path: site
+          if-no-files-found: error
+
+  deploy:
+    needs: build
+    uses: codeforamerica/github-actions/.github/workflows/shared-services-documentation-deploy.yaml@main
+    permissions:
+      contents: read
+      id-token: write
+    with:
+      artifact-ids: ${{ needs.build.outputs.artifact-id }}
+      environment: ${{ inputs.environment || 'docs-dev' }}
+    secrets: inherit
